@@ -1,0 +1,7 @@
+.env
+/.env
+.env/
+
+/scripts
+scripts/
+goal.txt
