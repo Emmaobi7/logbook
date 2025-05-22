@@ -7,7 +7,18 @@ const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
   password: String,
   role: { type: String, enum: ['student', 'supervisor', 'admin'], default: 'student' },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+
+  hasPaid: {
+    type: Boolean,
+    default: false,
+  },
+  paymentDetails: {
+    amount: Number,
+    date: Date,
+    method: String, // e.g., "Paystack", "Flutterwave", etc.
+    ref: String,    // Payment reference/transaction ID
+  },
 });
 
 userSchema.pre('save', async function (next) {

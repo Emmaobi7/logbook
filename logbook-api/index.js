@@ -2,8 +2,11 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const connectDB = require('./utils/db'); // ✅ your DB connection file
+const connectDB = require('./utils/db');
 const authRoutes = require('./routes/authRoutes');
+const logbookRoutes = require('./routes/logbookRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const supervisorRoutes = require('./routes/supervisor');
 
 const app = express();
 
@@ -13,6 +16,9 @@ app.use(express.json());
 
 // API Routes
 app.use('/auth', authRoutes);
+app.use('/api', logbookRoutes);
+app.use('/payment', paymentRoutes);
+app.use('/supervisor', supervisorRoutes);
 
 // Default route
 app.get('/', (req, res) => {

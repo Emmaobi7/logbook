@@ -6,6 +6,10 @@ import Login from '../pages/Login';
 import Register from '../pages/Register'
 import ProtectedRoute from '../components/protectedRoute';
 import { AuthProvider } from '../context/AuthContext';
+import PaymentRequired from '../components/PaymentRequired';
+import Payment from '../pages/Payment';
+import SupervisorInviteForm from '../pages/student/Supervisor';
+import SupervisorReviewPage from '../pages/supervisor/Review';
 
 function App() {
   return (
@@ -16,6 +20,44 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           {/* Protect student routes */}
+          <Route 
+            path="/supervisor/review/:token" 
+            element={
+              
+                <SupervisorReviewPage />
+            
+            } 
+          />
+
+
+          <Route
+            path='/student/supervisor'
+            element={
+              <ProtectedRoute>
+                <SupervisorInviteForm/>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path='/payment'
+            element={
+              <ProtectedRoute>
+                <Payment/>
+              </ProtectedRoute>
+            }
+          />
+
+
+          <Route
+            path='/payment-required'
+            element={
+              <ProtectedRoute>
+                <PaymentRequired/>
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/"
             element={

@@ -42,21 +42,24 @@ const statsData = [
 
 export default function StatsCards({ stats = statsData }) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-6">
-      {stats.map(({ id, label, value, icon, bgColor, textColor }) => (
-        <div
-          key={id}
-          className={`flex items-center gap-4 p-4 rounded-lg shadow ${bgColor}`}
-        >
-          <div className={`p-3 rounded-full ${textColor} bg-white`}>
-            {icon}
-          </div>
-          <div>
-            <p className="text-2xl font-semibold">{value}</p>
-            <p className="text-sm text-gray-600">{label}</p>
-          </div>
+    <div className="overflow-x-hidden px-4"> {/* ✅ Prevent horizontal scroll */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+    {stats.map(({ id, label, value, icon, bgColor, textColor }) => (
+      <div
+        key={id}
+        className={`flex items-center gap-4 p-4 rounded-lg shadow ${bgColor} w-full max-w-full overflow-hidden`} // ✅ Constrain width
+      >
+        <div className={`p-3 rounded-full ${textColor} bg-white shrink-0`}>
+          {icon}
         </div>
-      ))}
-    </div>
+        <div className="truncate">
+          <p className="text-2xl font-semibold break-words">{value}</p> {/* ✅ break long values */}
+          <p className="text-sm text-gray-600 break-words">{label}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
   );
 }

@@ -8,13 +8,17 @@ export default function CalendarView() {
   // You can add logic here to highlight dates with logbook entries
 
   return (
-    <div className="mt-8 p-4 bg-white rounded shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Logbook Submission Calendar</h2>
-      <Calendar
-        onChange={setDate}
-        value={date}
-        // Customize tileClassName to mark special dates if needed
-      />
-    </div>
+    <div className="mt-8 px-4 overflow-x-hidden"> {/* ✅ Prevents horizontal scroll */}
+      <div className="p-4 bg-white rounded shadow-md w-full max-w-full overflow-hidden">
+        <h2 className="text-xl font-semibold mb-4 break-words">Logbook Submission Calendar</h2>
+        <div className="w-full max-w-full">
+          <Calendar
+            onChange={setDate}
+            value={date}
+          />
+        </div>
+      </div>
+  </div>
+
   );
 }
