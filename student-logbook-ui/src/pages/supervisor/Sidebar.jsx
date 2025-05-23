@@ -2,13 +2,18 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome, FaSignOutAlt, } from "react-icons/fa";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login"); // Redirect to login after logout
+  };
 
   // Close sidebar when navigating
   useEffect(() => {
@@ -69,8 +74,16 @@ export default function Sidebar() {
             >
               <span>{link.icon}</span>
               <span>{link.name}</span>
+              
             </Link>
           ))}
+          <button
+                  className="flex items-center gap-3 px-4 py-2 mt-4 text-red-600 hover:bg-red-100 rounded-lg"
+                  onClick={() => handleLogout()}
+                >
+                  <FaSignOutAlt />
+                  Logout
+                </button>
         </nav>
       </div>
 

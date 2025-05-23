@@ -2,19 +2,23 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import Sidebar from "./Sidebar";
 import RecentLogsTable from "./RecentLogs";
+import { useAuth } from "../../context/AuthContext";
 
 const SupervisorDashboard = () => {
   const [stats, setStats] = useState({
     total_students: 0,
     pending_logs: 0,
     approved_logs: 0,
+    rejected_logs: 0,
   });
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
         const res = await axiosInstance.get("/supervisor/dashboard-stats");
+       
         setStats(res.data);
       } catch (error) {
         console.error("Failed to fetch stats:", error);
@@ -30,8 +34,8 @@ const SupervisorDashboard = () => {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <main className="flex-1 p-4 md:ml-64 bg-gray-100 transition-all">
-        <h2 className="text-2xl font-semibold mb-6">Welcome, Supervisor</h2>
+      <main className="flex-1 p-4 md:ml-10 bg-gray-100 transition-all">
+        <h2 className="text-2xl font-semibold mb-6">Welcome, Mr {user.fullName}</h2>
 
         {/* Stat Cards */}
         {loading ? (
@@ -41,6 +45,7 @@ const SupervisorDashboard = () => {
             <StatCard label="Total Students" value={stats.total_students} />
             <StatCard label="Pending Logs" value={stats.pending_logs} />
             <StatCard label="Approved Logs" value={stats.approved_logs} />
+            <StatCard label="Rejected Logs" value={stats.rejected_logs} />
           </div>
         )}
 

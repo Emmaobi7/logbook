@@ -25,9 +25,9 @@ exports.createEntry = async (req, res) => {
       date: { $gte: startOfDay, $lte: endOfDay },
     });
 
-    if (existing) {
-      return res.status(409).json({ message: 'You have already submitted a log for today.' });
-    }
+    // if (existing) {
+    //   return res.status(409).json({ message: 'You have already submitted a log for today.' });
+    // }
 
   try {
     const entry = await LogbookEntry.create({

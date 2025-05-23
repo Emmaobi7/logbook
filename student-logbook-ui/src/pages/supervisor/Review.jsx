@@ -90,7 +90,7 @@ const SupervisorReviewPage = () => {
 
               {entry.status === 'pending' && (
                 <>
-                  {/* <textarea
+                  <textarea
                     placeholder="Add a comment (optional)"
                     value={comments[entry._id] || ''}
                     onChange={(e) =>
@@ -98,7 +98,7 @@ const SupervisorReviewPage = () => {
                     }
                     className="w-full mb-3 p-2 rounded bg-gray-700 text-gray-200 resize-none"
                     rows={3}
-                  /> */}
+                  />
                   <div className="flex space-x-4">
                     <button
                       disabled={loading && updatingLogId === entry._id}

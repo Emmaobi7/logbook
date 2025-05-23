@@ -11,7 +11,9 @@ const Register = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
   const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const validatePassword = (pwd) => {
@@ -19,6 +21,7 @@ const Register = () => {
     if (!/[A-Z]/.test(pwd)) return "Password must contain at least one uppercase letter";
     if (!/[a-z]/.test(pwd)) return "Password must contain at least one lowercase letter";
     if (!/[0-9]/.test(pwd)) return "Password must contain at least one number";
+    if (password !== password2) return "Paswords dont match!"
     return null;
   };
 
@@ -26,6 +29,7 @@ const Register = () => {
     e.preventDefault();
     const passwordErr = validatePassword(password);
     if (passwordErr) return setErr(passwordErr);
+    setLoading(true)
 
     try {
       const res = await axios.post(`${baseURL}/auth/register`, {
@@ -43,6 +47,9 @@ const Register = () => {
     } catch (error) {
       console.log(error)
       setErr(error?.response?.data?.message || "Registration failed");
+      setLoading(false)
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -76,11 +83,20 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+
+          <input
+            type="password"
+            placeholder="Confirm password"
+            className="bg-white/10 p-3 rounded-lg text-white border border-white/30"
+            value={password2}
+            onChange={(e) => setPassword2(e.target.value)}
+            required
+          />
           <p className="text-xs text-gray-400">
             Password must be at least 6 characters, contain upper & lowercase letters, and a number.
           </p>
-          <button className="bg-green-600 hover:bg-green-700 p-3 rounded-lg font-semibold transition">
-            Register
+          <button disabled={loading} className="bg-green-600 hover:bg-green-700 p-3 rounded-lg font-semibold transition">
+            {loading ? "creating..." : "Register" }
           </button>
         </form>
         <p className="text-sm mt-4">

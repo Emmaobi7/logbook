@@ -8,6 +8,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -28,6 +29,7 @@ const Login = () => {
     }
 
     try {
+      setLoading(true)
       await login(email, password);  // auth context handles API call, storage etc.
       const user = JSON.parse(localStorage.getItem("user")); // Get the stored user
       
@@ -48,6 +50,9 @@ const Login = () => {
     } catch (error) {
       // error could come from context's login method
       setErr(error?.message || "Login failed");
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -77,8 +82,8 @@ const Login = () => {
             Must be at least 6 characters, include uppercase, lowercase, and a number.
           </p>
 
-          <button className="bg-green-600 hover:bg-green-700 p-3 rounded-lg font-semibold transition">
-            Login
+          <button disabled={loading} className="bg-green-600 hover:bg-green-700 p-3 rounded-lg font-semibold transition">
+            { loading ? "hold on..." : "Login" } 
           </button>
         </form>
         <p className="text-sm mt-4">

@@ -11,6 +11,8 @@ import Payment from '../pages/Payment';
 import SupervisorInviteForm from '../pages/student/Supervisor';
 import SupervisorReviewPage from '../pages/supervisor/Review';
 import SupervisorDashboard from '../pages/supervisor/Dashboard';
+import StudentLogsPage from '../pages/supervisor/MyStudents';
+import ExportLogs from '../pages/supervisor/Exportlogs';
 
 function App() {
   return (
@@ -19,14 +21,35 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+          {/* Protect student routes */}
+
           <Route 
             path="/supervisor/review/:token" 
             element={
+              <ProtectedRoute requiredRole="supervisor">
                 <SupervisorReviewPage />  
+              </ProtectedRoute>
             } 
           />
 
-          {/* Protect student routes */}
+          <Route 
+            path="/supervisor/export" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                  <ExportLogs />
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/supervisor/logs" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                  <StudentLogsPage />
+              </ProtectedRoute>
+            } 
+          />
 
           <Route 
             path="/supervisor/dashboard" 
