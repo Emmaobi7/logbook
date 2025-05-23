@@ -10,6 +10,7 @@ import PaymentRequired from '../components/PaymentRequired';
 import Payment from '../pages/Payment';
 import SupervisorInviteForm from '../pages/student/Supervisor';
 import SupervisorReviewPage from '../pages/supervisor/Review';
+import SupervisorDashboard from '../pages/supervisor/Dashboard';
 
 function App() {
   return (
@@ -18,17 +19,25 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-
-          {/* Protect student routes */}
           <Route 
             path="/supervisor/review/:token" 
             element={
-              
-                <SupervisorReviewPage />
-            
+                <SupervisorReviewPage />  
             } 
           />
 
+          {/* Protect student routes */}
+
+          <Route 
+            path="/supervisor/dashboard" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                  <SupervisorDashboard />
+              </ProtectedRoute>
+            } 
+          />
+
+          
 
           <Route
             path='/student/supervisor'
@@ -70,7 +79,7 @@ function App() {
           <Route
             path="/student/dashboard"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="student">
                 <StudentDashboard />
               </ProtectedRoute>
             }

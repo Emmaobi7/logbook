@@ -29,7 +29,22 @@ const Login = () => {
 
     try {
       await login(email, password);  // auth context handles API call, storage etc.
-      navigate("/student/dashboard");
+      const user = JSON.parse(localStorage.getItem("user")); // Get the stored user
+      
+      // Navigate based on role
+      switch (user.role) {
+        case "student":
+          navigate("/student/dashboard");
+          break;
+        case "supervisor":
+          navigate("/supervisor/dashboard");
+          break;
+        case "admin":
+          navigate("/admin");
+          break;
+        default:
+          navigate("/unauthorized");
+      }
     } catch (error) {
       // error could come from context's login method
       setErr(error?.message || "Login failed");

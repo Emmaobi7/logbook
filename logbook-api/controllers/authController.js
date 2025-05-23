@@ -5,8 +5,10 @@ const bcrypt = require('bcryptjs');
 const sendEmail = require('../utils/sendEmail');
 
 exports.register = async (req, res) => {
-  const { fullName, email, password } = req.body;
-  const role = "student";
+  const { fullName, email, password, role } = req.body;
+  if (!role) {
+    const role = "student";
+  }
 
   try {
     const existing = await User.findOne({ email });
