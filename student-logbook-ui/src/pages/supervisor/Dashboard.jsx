@@ -3,6 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import Sidebar from "./Sidebar";
 import RecentLogsTable from "./RecentLogs";
 import { useAuth } from "../../context/AuthContext";
+import { FaUserGraduate, FaClipboardList, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const SupervisorDashboard = () => {
   const [stats, setStats] = useState({
@@ -41,16 +42,17 @@ const SupervisorDashboard = () => {
         {loading ? (
           <p>Loading stats...</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-            <StatCard label="Total Students" value={stats.total_students} />
-            <StatCard label="Pending Logs" value={stats.pending_logs} />
-            <StatCard label="Approved Logs" value={stats.approved_logs} />
-            <StatCard label="Rejected Logs" value={stats.rejected_logs} />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <StatCard label="Total Students" value={stats.total_students} icon={FaUserGraduate} />
+            <StatCard label="Pending Logs" value={stats.pending_logs} icon={FaClipboardList} />
+            <StatCard label="Approved Logs" value={stats.approved_logs} icon={FaCheckCircle} />
+            <StatCard label="Rejected Logs" value={stats.rejected_logs} icon={FaTimesCircle} />
           </div>
+
         )}
 
         {/* Recent Logs Table */}
-        <div className="bg-white p-6 rounded shadow">
+        <div className="bg-blue-100 p-6 rounded shadow">
           <h3 className="text-lg font-medium mb-4">Recent Log Submissions</h3>
           <RecentLogsTable />
         </div>
@@ -59,11 +61,21 @@ const SupervisorDashboard = () => {
   );
 };
 
-const StatCard = ({ label, value }) => (
-  <div className="bg-white p-4 rounded shadow text-center">
-    <h4 className="text-gray-600">{label}</h4>
-    <p className="text-2xl font-bold text-blue-700">{value}</p>
-  </div>
-);
+
+
+function StatCard({ label, value, icon: Icon }) {
+  return (
+    <div className="bg-blue-100 shadow rounded-lg p-6 flex items-center space-x-4">
+      <div className="text-blue-600 text-3xl">
+        <Icon />
+      </div>
+      <div>
+        <p className="text-sm font-medium text-gray-500">{label}</p>
+        <p className="text-xl font-bold text-gray-800">{value}</p>
+      </div>
+    </div>
+  );
+}
+
 
 export default SupervisorDashboard;

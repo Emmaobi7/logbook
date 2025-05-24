@@ -16,7 +16,7 @@ import {
 const links = [
   { to: '/student/dashboard', label: 'Dashboard', icon: <FaTachometerAlt /> },
   { to: '/student/logbook', label: 'My Logbook', icon: <FaBook /> },
-  { to: '/student/supervisor', label: 'Supervisor', icon: <FaUserTie /> },
+  { to: '/student/supervisor', label: 'Preceptor', icon: <FaUserTie /> },
   { to: '/student/exam-registration', label: 'Exam Registration', icon: <FaBook /> },
   { to: '/student/notifications', label: 'Notifications', icon: <FaBell /> },
   { to: '/student/profile', label: 'Profile', icon: <FaUser /> },

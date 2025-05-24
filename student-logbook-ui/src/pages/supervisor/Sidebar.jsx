@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome, FaSignOutAlt, } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -36,6 +36,7 @@ export default function Sidebar() {
         { name: "Dashboard", to: "/supervisor/dashboard", icon: <FaHome /> },
         { name: "Student Logs", to: "/supervisor/logs", icon: <FaClipboardList /> },
         { name: "Export Logs", to: "/supervisor/export", icon: <FaFileExport /> },
+        { name: "Profile", to: "/supervisor/profile", icon: <FaUser /> },
       ]
     : [
         { name: "Dashboard", to: "/student/dashboard", icon: <FaHome /> },

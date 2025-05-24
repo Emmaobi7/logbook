@@ -13,6 +13,9 @@ import SupervisorReviewPage from '../pages/supervisor/Review';
 import SupervisorDashboard from '../pages/supervisor/Dashboard';
 import StudentLogsPage from '../pages/supervisor/MyStudents';
 import ExportLogs from '../pages/supervisor/Exportlogs';
+import StudentProfile from '../pages/student/Profile';
+import SupervisorProfile from '../pages/supervisor/Profile';
+import AdminDashboard from '../pages/admin/Dashboard';
 
 function App() {
   return (
@@ -23,6 +26,33 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           {/* Protect student routes */}
+
+          <Route 
+            path="/admin/dashboard" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminDashboard />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/supervisor/profile" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                <SupervisorProfile />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/student/profile" 
+            element={
+              <ProtectedRoute requiredRole="student">
+                <StudentProfile />  
+              </ProtectedRoute>
+            } 
+          />
 
           <Route 
             path="/supervisor/review/:token" 
@@ -65,7 +95,7 @@ function App() {
           <Route
             path='/student/supervisor'
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="student">
                 <SupervisorInviteForm/>
               </ProtectedRoute>
             }
@@ -74,7 +104,7 @@ function App() {
           <Route
             path='/payment'
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="student">
                 <Payment/>
               </ProtectedRoute>
             }
@@ -93,7 +123,7 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="student">
                 <StudentDashboard />
               </ProtectedRoute>
             }
@@ -111,7 +141,7 @@ function App() {
           <Route
             path="/student/logbook"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="student">
                 <Logbook />
               </ProtectedRoute>
             }

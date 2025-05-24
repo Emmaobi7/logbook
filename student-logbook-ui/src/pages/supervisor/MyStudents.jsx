@@ -143,7 +143,7 @@ const LogRow = ({ log, onStatusChange }) => {
             </span>
           )}
         </td>
-        <td className="p-3 text-right">
+        {/* <td className="p-3 text-right">
           {canEdit && (
             <button
               onClick={handleSave}
@@ -152,7 +152,7 @@ const LogRow = ({ log, onStatusChange }) => {
               Save
             </button>
           )}
-        </td>
+        </td> */}
       </tr>
 
       {/* Competencies Row */}
@@ -179,7 +179,7 @@ const LogRow = ({ log, onStatusChange }) => {
       <tr className="bg-gray-50 border-b">
         <td colSpan={4} className="p-3">
           <div className="text-sm text-gray-700">
-            <span className="font-semibold">Supervisor Comment:</span>
+            <span className="font-semibold">Preceptors Comment:</span>
             {canEdit ? (
               <textarea
                 value={comment}
@@ -194,6 +194,16 @@ const LogRow = ({ log, onStatusChange }) => {
               </p>
             )}
           </div>
+          <td className="p-3 text-right">
+          {canEdit && (
+            <button
+              onClick={handleSave}
+              className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+            >
+              Save
+            </button>
+          )}
+        </td>
         </td>
       </tr>
     </>

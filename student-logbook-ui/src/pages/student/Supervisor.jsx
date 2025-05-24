@@ -34,7 +34,7 @@ const SupervisorInviteForm = () => {
         <Box mt={10} maxWidth="400px" mx="auto">
             
         <Typography variant="h6" gutterBottom>
-            Invite Your Supervisor
+            Invite Your Preceptor
         </Typography>
 
         {successMsg && <Alert severity="success">{successMsg}</Alert>}
@@ -44,7 +44,7 @@ const SupervisorInviteForm = () => {
             <TextField
             fullWidth
             margin="normal"
-            label="Supervisor Name"
+            label="Preceptor Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -52,7 +52,7 @@ const SupervisorInviteForm = () => {
             <TextField
             fullWidth
             margin="normal"
-            label="Supervisor Email"
+            label="Preceptor Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}

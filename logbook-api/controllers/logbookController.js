@@ -132,3 +132,55 @@ exports.exportLogbookPDF = async (req, res) => {
 
 
 
+exports.updateLog = async (req, res) => {
+  const { id } = req.params;
+  const { description, title } = req.body;
+  const userId = req.user.userId;
+
+  // Validations
+  if (!userId) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  try {
+    // Find the existing log
+    const existingLog = await LogbookEntry.findOne({
+      _id: id,
+      user: userId // Ensure user owns this log
+    });
+
+    if (!existingLog) {
+      return res.status(404).json({ message: 'Log not found or unauthorized' });
+    }
+
+    // Prevent updates if log is already approved/rejected
+    if (existingLog.status !== 'rejected') {
+      return res.status(403).json({ 
+        message: 'Cannot modify logs that are approved/pending' 
+      });
+    }
+
+    // Update only allowed fields
+    const updatedLog = await LogbookEntry.findByIdAndUpdate(
+      id,
+      {
+        ...(description && { content: description.trim() }),
+        ...(title && { title }), // Only update title if provided
+        status: 'pending'
+        // ...(status && { status }), // Only update status if provided
+      },
+      { new: true, runValidators: true } // Return updated doc and validate
+    );
+
+    res.status(200).json({
+      message: 'Log updated successfully',
+      entry: updatedLog
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to update log' });
+  }
+};
+
+
+

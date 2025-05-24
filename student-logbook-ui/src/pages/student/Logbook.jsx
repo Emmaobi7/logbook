@@ -4,11 +4,8 @@ import axiosInstance from '../../utils/axiosInstance';
 import { FiInbox } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import ExportTableToPDF from "../../components/ExportTableToPdf";
-import { forwardRef } from "react";
+import EditLogModal from './EditLogEntry';
 
-const PrintableWrapper = forwardRef((props, ref) => (
-  <div ref={ref}>{props.children}</div>
-));
 
 
 export default function Logbook() {
@@ -27,6 +24,7 @@ export default function Logbook() {
         const res = await axiosInstance.get('/api/log');
         if (Array.isArray(res.data)) {
           setLogs(res.data);
+          
         } else {
           setError('Invalid response format from server.');
         }
@@ -70,6 +68,24 @@ export default function Logbook() {
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handleUpdate = async (updatedLog) => {
+    const id = updatedLog.id;
+    try {
+      
+      const res = await axiosInstance.patch(`/api/log/${id}`, updatedLog);
+      // setLogs(prevLogs => [res.data, ...prevLogs]);
+
+      setNewEntry({ description: '', title: '' });
+      alert('Entry updated successfully, goodluck!!')
+    } catch (err) {
+      alert('Error updating log, try again later')
+        console.error('Add log error:', err);
+    } finally {
+      setSubmitting(false);
+    }
+    
   };
 
 return (
@@ -152,7 +168,8 @@ return (
                     <th className="py-3 px-4 border">Activities</th>
                     <th className="py-3 px-4 border">Competencies Acquired</th>
                     <th className="py-3 px-4 border">Preceptor’s Signature</th>
-                    <th className="py-3 px-4 border">Supervisor’s Comment</th>
+                    <th className="py-3 px-4 border">Preceptor’s Comment</th>
+                    <th className="py-3 px-4 border">Corrections</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -171,6 +188,20 @@ return (
                         {log.status || 'Pending'}
                       </td>
                       <td className="py-2 px-4 border">{log.comments || '—'}</td>
+                      <td className='py-2 px-4 border'>
+                      {/* <button
+                        type="submit"
+                        onClick={testme}
+                        disabled={log.status !== 'rejected'}
+                        className="p-2 rounded text-black bg-blue-600 hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-blue-600"
+                      >
+                        Edit log
+                      </button> */}
+                      <EditLogModal 
+                        log={log} 
+                        onSave={handleUpdate} 
+                      />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
