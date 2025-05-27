@@ -19,6 +19,8 @@ const EditLogModal = ({ log, onSave }) => {
     setIsOpen(true);
   };
 
+  
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -56,7 +58,7 @@ const EditLogModal = ({ log, onSave }) => {
       {/* Modal */}
       {isOpen && (
         <div className="fixed inset-0 bg-gray-900/70 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md">
+          <div className="bg-white p-6 rounded-lg w-full max-w-sm">
             <h2 className="text-xl font-bold mb-4">Edit Log</h2>
             
             <form onSubmit={handleSubmit}>

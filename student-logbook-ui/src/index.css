@@ -4,3 +4,9 @@
 button:hover {
     cursor: pointer;
 }
+
+html, body {
+  height: 100%;
+  background-color: #f3f4f6; /* Tailwind's gray-100 */
+  margin: 0;
+}

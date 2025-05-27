@@ -83,6 +83,7 @@ const SupervisorGuide = () => {
     <div className="flex min-h-screen">
           <Sidebar />
     <Slide in direction="up" timeout={500}>
+      <div className="mt-10">
       <Box p={3} maxWidth="800px" mx="auto">
         <Typography variant="h4" gutterBottom color="primary" fontWeight="bold">
           Preceptor Guide
@@ -105,6 +106,7 @@ const SupervisorGuide = () => {
           </List>
         </Paper>
       </Box>
+      </div>
     </Slide>
     </div>
   );

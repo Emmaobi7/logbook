@@ -58,8 +58,8 @@ const SupervisorStudents = () => {
   return (
     <div className="flex min-h-screen">
           <Sidebar />
-    
-    <Box p={4}>
+    <div className='mt-10'>
+    <Box p={4} >
       <Typography variant="h4" gutterBottom>
         Assigned Students
       </Typography>
@@ -100,6 +100,7 @@ const SupervisorStudents = () => {
         message={snackbar.message}
       />
     </Box>
+    </div>
     </div>
   );
 };
