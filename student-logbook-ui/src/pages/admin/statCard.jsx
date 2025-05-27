@@ -1,6 +1,6 @@
 export default function StatCard({ icon: Icon, label, value }) {
   return (
-    <div className="bg-white shadow-md rounded-2xl p-6 flex items-center gap-4">
+    <div className="bg-blue-100 shadow-md rounded-2xl p-6 flex items-center gap-4">
       <div className="text-blue-700 text-3xl">
         <Icon />
       </div>

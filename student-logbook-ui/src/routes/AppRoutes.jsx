@@ -16,6 +16,19 @@ import ExportLogs from '../pages/supervisor/Exportlogs';
 import StudentProfile from '../pages/student/Profile';
 import SupervisorProfile from '../pages/supervisor/Profile';
 import AdminDashboard from '../pages/admin/Dashboard';
+import UsersPage from '../pages/admin/UsersPage';
+import NotificationsPage from '../pages/admin/Notification';
+import SentNotifications from '../pages/admin/SentNotifications';
+import CreateUserPage from '../pages/admin/CreateUserPage';
+import AssignStudents from '../pages/admin/AssignSupervisors';
+import NotificationsPageSupervisor from '../pages/supervisor/NotificationPage';
+import NotificationsPageStudent from '../pages/student/NotificationsPage';
+import StudentGuide from '../pages/student/StudentGuide';
+import SupervisorGuide from '../pages/supervisor/SupervisorGuide';
+import AdminGuide from '../pages/admin/AdminGuide';
+import SupervisorStudents from '../pages/supervisor/Students';
+import ForgotPassword from '../pages/fp';
+import ResetPassword from '../pages/reset-password';
 
 function App() {
   return (
@@ -24,6 +37,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/fp" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
 
           {/* Protect student routes */}
 
@@ -32,6 +47,62 @@ function App() {
             element={
               <ProtectedRoute requiredRole="admin">
                 <AdminDashboard />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/admin/add-user" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <CreateUserPage />  
+              </ProtectedRoute>
+            } 
+          />
+
+
+          
+          <Route 
+            path="/admin/sent" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <SentNotifications />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/admin/assign" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AssignStudents />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/admin/guide" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminGuide />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/admin/notification" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <NotificationsPage />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
+            path="/admin/users" 
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <UsersPage />  
               </ProtectedRoute>
             } 
           />
@@ -46,6 +117,25 @@ function App() {
           />
 
           <Route 
+            path="/supervisor/guide" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                <SupervisorGuide />  
+              </ProtectedRoute>
+            } 
+          />
+
+
+           <Route 
+            path="/supervisor/notification" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                <NotificationsPageSupervisor />  
+              </ProtectedRoute>
+            } 
+          />
+
+          <Route 
             path="/student/profile" 
             element={
               <ProtectedRoute requiredRole="student">
@@ -53,6 +143,16 @@ function App() {
               </ProtectedRoute>
             } 
           />
+
+           <Route 
+            path="/student/notification" 
+            element={
+              <ProtectedRoute requiredRole="student">
+                <NotificationsPageStudent />  
+              </ProtectedRoute>
+            } 
+          />
+
 
           <Route 
             path="/supervisor/review/:token" 
@@ -68,6 +168,15 @@ function App() {
             element={
               <ProtectedRoute requiredRole="supervisor">
                   <ExportLogs />
+              </ProtectedRoute>
+            } 
+          />
+
+           <Route 
+            path="/supervisor/students" 
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                  <SupervisorStudents />
               </ProtectedRoute>
             } 
           />
@@ -114,7 +223,7 @@ function App() {
           <Route
             path='/payment-required'
             element={
-              <ProtectedRoute>
+              <ProtectedRoute requiredRole="student">
                 <PaymentRequired/>
               </ProtectedRoute>
             }
@@ -146,6 +255,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/student/guide"
+            element={
+              <ProtectedRoute requiredRole="student">
+                <StudentGuide />
+              </ProtectedRoute>
+            }
+          />
+
 
           {/* Add other protected routes similarly */}
         </Routes>

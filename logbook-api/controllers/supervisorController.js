@@ -43,7 +43,7 @@ exports.inviteSupervisor = async (req, res) => {
     `Hi ${name},\n\nYou’ve been invited to review a student's logbook.\nClick the link below to get started:\n\n${link}`
   );
 
-  return res.json({ message: 'Supervisor invited successfully.' });
+  return res.json({ message: 'Preceptor invited successfully.' });
 };
 
 

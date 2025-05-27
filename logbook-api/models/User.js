@@ -16,8 +16,13 @@ const userSchema = new mongoose.Schema({
   paymentDetails: {
     amount: Number,
     date: Date,
-    method: String, // e.g., "Paystack", "Flutterwave", etc.
+    method: String, // e.g., card/transfer
     ref: String,    // Payment reference/transaction ID
+  },
+
+   isActive: {
+    type: Boolean,
+    default: true,
   },
 });
 

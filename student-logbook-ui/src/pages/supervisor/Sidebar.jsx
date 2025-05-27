@@ -2,7 +2,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { FaRegQuestionCircle, FaUsers, FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome, FaSignOutAlt, FaUser, FaBell } from "react-icons/fa";
+import { MdAssignment } from 'react-icons/md';
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -35,13 +36,18 @@ export default function Sidebar() {
     ? [
         { name: "Dashboard", to: "/supervisor/dashboard", icon: <FaHome /> },
         { name: "Student Logs", to: "/supervisor/logs", icon: <FaClipboardList /> },
+        { name: "My Students", to: "/supervisor/students", icon: <FaUsers  /> },
         { name: "Export Logs", to: "/supervisor/export", icon: <FaFileExport /> },
         { name: "Profile", to: "/supervisor/profile", icon: <FaUser /> },
+        { name: "Notification", to: "/supervisor/notification", icon: <FaBell  /> },
+        { name: "Guide", to: "/supervisor/guide", icon: <FaRegQuestionCircle  /> },
+        
       ]
     : [
         { name: "Dashboard", to: "/student/dashboard", icon: <FaHome /> },
         { name: "My Logs", to: "/student/logs", icon: <FaClipboardList /> },
         { name: "Create Log", to: "/student/create", icon: <FaFileExport /> },
+        
       ];
 
   return (

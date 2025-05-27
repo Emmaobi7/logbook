@@ -36,7 +36,7 @@ const SupervisorDashboard = () => {
       <Sidebar />
 
       <main className="flex-1 p-4 md:ml-10 bg-gray-100 transition-all">
-        <h2 className="text-2xl font-semibold mb-6">Welcome, Mr {user.fullName}</h2>
+        <h2 className="text-2xl font-semibold mb-6">Welcome, {user.fullName}</h2>
 
         {/* Stat Cards */}
         {loading ? (

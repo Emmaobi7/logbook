@@ -11,6 +11,7 @@ const paymentRoutes = require('./routes/paymentRoutes');
 const supervisorRoutes = require('./routes/supervisor');
 const studentProfileRoutes = require('./routes/studentProfile');
 const supervisorProfileRoutes = require('./routes/supervisorProfile');
+const adminRoutes = require('./routes/adminRoutes');
 
 
 const app = express();
@@ -27,6 +28,7 @@ app.use('/payment', paymentRoutes);
 app.use('/supervisor', supervisorRoutes);
 app.use('/student', studentProfileRoutes);
 app.use('/supervisor-profile', supervisorProfileRoutes);
+app.use('/admin', adminRoutes);
 
 
 const publicUploadsPath = path.join(__dirname, "public/uploads");

@@ -176,8 +176,11 @@ return (
                   {logs.map((log) => (
                     <tr key={log._id} className="border-t">
                       <td className="py-2 px-4 border">
-                        {new Date(log.date).toLocaleDateString()}
+                        {isNaN(new Date(log.date)) 
+                          ? new Date().toLocaleDateString() 
+                          : new Date(log.date).toLocaleDateString()}
                       </td>
+
                       <td className="py-2 px-4 border whitespace-pre-wrap">
                         {log.title}
                       </td>

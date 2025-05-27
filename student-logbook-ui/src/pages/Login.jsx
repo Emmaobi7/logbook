@@ -91,6 +91,10 @@ const Login = () => {
           <a href="/register" className="text-blue-400 underline">
             Register
           </a>
+          <br />
+          <a href="/fp" className="text-blue-400 underline">
+            Forgotten Password?
+          </a>
         </p>
       </GlassCard>
     </div>

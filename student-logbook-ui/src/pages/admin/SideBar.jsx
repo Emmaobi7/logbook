@@ -1,12 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { MdDashboard, MdSettings, MdPeople, MdAssignment } from "react-icons/md";
-import { NavLink, useLocation } from "react-router-dom";
+import { MdDashboard, MdSettings, MdPeople, MdAssignment, MdSend, MdPersonAdd, MdSupervisorAccount } from "react-icons/md";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { FaSignOutAlt, FaRegQuestionCircle } from 'react-icons/fa';
+import { useAuth } from "../../context/AuthContext";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const sidebarRef = useRef(null);
   const location = useLocation();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate()
+
+   const handleLogout = () => {
+    logout();
+    navigate("/login"); // Redirect to login after logout
+  };
 
   // Close sidebar when clicking outside or changing route
   useEffect(() => {
@@ -76,9 +85,19 @@ export default function Sidebar() {
           {/* Navigation */}
           <nav className="flex-1 flex flex-col gap-2">
             <NavItem to="/admin/dashboard" icon={<MdDashboard />} text="Dashboard" />
-            <NavItem to="/users" icon={<MdPeople />} text="Users" />
-            <NavItem to="/reports" icon={<MdAssignment />} text="Reports" />
-            <NavItem to="/settings" icon={<MdSettings />} text="Settings" />
+            <NavItem to="/admin/users" icon={<MdPeople />} text="Users" />
+            <NavItem to="/admin/notification" icon={<MdAssignment />} text="Send Notification" />
+            <NavItem to="/admin/sent" icon={<MdSend />} text="Sent Notifications" />
+            <NavItem to="/admin/add-user" icon={<MdPersonAdd />} text="Add user" />
+            <NavItem to="/admin/assign" icon={<MdSupervisorAccount />} text="Assign preceptor" />
+            <NavItem to="/admin/guide" icon={<FaRegQuestionCircle />} text="Guide" />
+            <button
+                              className="flex items-center gap-3 px-4 py-2 mt-4 text-red-600 hover:bg-red-100 rounded-lg"
+                              onClick={() => handleLogout()}
+                            >
+                              <FaSignOutAlt />
+                              Logout
+                            </button>
           </nav>
 
           {/* Footer */}

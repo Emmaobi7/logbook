@@ -4,6 +4,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const sendEmail = require('../utils/sendEmail');
 
+const ResetToken = require('../models/ResetTokens');
+const generateToken = require('../utils/generateToken');
+
 exports.register = async (req, res) => {
   const { fullName, email, password, role } = req.body;
   if (!role) {
@@ -52,6 +55,11 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'Invalid email or password' });
 
+    if (!user.isActive) {
+      return res.status(403).json({ message: 'Your account has been deactivated' });
+    }
+
+
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(401).json({ message: 'Invalid email or password' });
 
@@ -64,3 +72,70 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: 'Login failed' });
   }
 };
+
+
+
+
+
+
+exports.forgotPassword = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user)
+      return res.status(404).json({ message: "No account with that email." });
+
+    // Optional: delete existing reset tokens for the user (to avoid multiple tokens)
+    await ResetToken.deleteMany({ userId: user._id });
+
+    const token = generateToken();
+
+    // Save token to database with expiry (via TTL in schema)
+    await ResetToken.create({ userId: user._id, token });
+
+    const resetLink = `${process.env.CLIENT_URL}/reset-password?token=${token}`;
+
+    await sendEmail(
+      email,
+      "Password Reset Request",
+      `Hi ${user.fullName},\n\nClick the link below to reset your password:\n${resetLink}\n\nIf you didn't request this, you can ignore this email.`
+    );
+
+    res.json({ message: "Reset link sent to your email." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Failed to process request." });
+  }
+};
+
+
+
+
+exports.resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  if (!token || !newPassword)
+    return res.status(400).json({ message: "Missing token or password." });
+
+  try {
+    const tokenDoc = await ResetToken.findOne({ token });
+    if (!tokenDoc)
+      return res.status(400).json({ message: "Invalid or expired token." });
+
+    const user = await User.findById(tokenDoc.userId);
+    if (!user) return res.status(404).json({ message: "User not found." });
+
+    user.password = newPassword;
+    await user.save();
+
+    // Delete token after successful reset
+    await ResetToken.deleteOne({ _id: tokenDoc._id });
+
+    res.json({ message: "Password reset successful." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Could not reset password." });
+  }
+};
+

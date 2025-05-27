@@ -1,6 +1,7 @@
 const StudentProfile = require("../models/studentProfile");
 const path = require("path");
 const fs = require("fs");
+const SupervisorSession = require('../models/SupervisorSession');
 
 
 exports.getProfile = async (req, res) => {
@@ -59,4 +60,31 @@ exports.updateProfile = async (req, res) => {
     res.status(500).json({ message: "Error updating profile" });
   }
 };
+
+
+
+
+exports.getSupervisorForStudent = async (req, res) => {
+  try {
+    const studentId = req.user.userId;
+
+    // Find the supervisor session for this student (active)
+    const session = await SupervisorSession.findOne({ student: studentId });
+
+    if (!session) {
+      return res.json({ supervisor: null });
+    }
+
+    return res.json({
+      supervisor: {
+        fullName: session.supervisorName,
+        email: session.supervisorEmail,
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Error fetching supervisor' });
+  }
+};
+
 
