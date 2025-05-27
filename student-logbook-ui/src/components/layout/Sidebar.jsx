@@ -19,7 +19,7 @@ const links = [
   { to: '/student/dashboard', label: 'Dashboard', icon: <FaTachometerAlt /> },
   { to: '/student/logbook', label: 'My Logbook', icon: <FaBook /> },
   { to: '/student/supervisor', label: 'Preceptor', icon: <FaUserTie /> },
-  { to: '/student/exam-registration', label: 'Exam Registration', icon: <FaBook /> },
+  // { to: '/student/exam-registration', label: 'Exam Registration', icon: <FaBook /> },
   { to: '/student/profile', label: 'Profile', icon: <FaUser /> },
   { to: '/student/notification', label: 'Notification', icon: <FaBell /> },
   { to: '/student/guide', label: 'Guide', icon: < FaRegQuestionCircle /> },
