@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import GlassCard from "../components/GlassCard";
+import logo from '../assets/wapcp2-removebg-preview.png';
 
 const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
@@ -27,8 +28,18 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white flex items-center justify-center">
+    <div className="min-h-screen orange-gradient-bg text-black flex items-center justify-center">
       <GlassCard>
+        <div className="flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
+  <img src={logo} alt="Logo" className="mx-auto w-20 h-auto mb-2" />
+  <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white text-center leading-snug">
+    West African Postgraduate College of Pharmacists
+  </h1>
+  <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 text-center">
+    Student Log Book Portal
+  </p>
+</div>
+
         <h2 className="text-2xl font-bold mb-4">Forgot Password</h2>
         {err && <p className="text-red-400 mb-2">{err}</p>}
         {success && <p className="text-green-400 mb-2">{success}</p>}
@@ -43,7 +54,7 @@ const ForgotPassword = () => {
           />
           <button
             disabled={loading}
-            className="bg-green-600 hover:bg-green-700 p-3 rounded-lg font-semibold transition"
+            className="text-white bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 p-3 rounded-lg font-semibold transition"
           >
             {loading ? "Sending..." : "Send Reset Link"}
           </button>

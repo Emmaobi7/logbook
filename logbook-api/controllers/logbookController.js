@@ -1,6 +1,8 @@
 // controllers/logbookController.js
 const LogbookEntry = require('../models/LogbookEntry');
 const PDFDocument = require('pdfkit');
+const PDFTable = require('pdfkit-table');
+
 
 exports.createEntry = async (req, res) => {
   const { description, title } = req.body;
@@ -181,6 +183,7 @@ exports.updateLog = async (req, res) => {
     res.status(500).json({ message: 'Failed to update log' });
   }
 };
+
 
 
 

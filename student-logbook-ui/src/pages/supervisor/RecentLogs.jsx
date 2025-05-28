@@ -24,7 +24,7 @@ const RecentLogsTable = () => {
   return (
     <table className="w-full table-auto border-collapse">
       <thead>
-        <tr className="bg-blue-300 text-left">
+        <tr className="bg-orange-200 text-left">
           <th className="p-2">Student</th>
           <th className="p-2">Date</th>
           <th className="p-2">Status</th>

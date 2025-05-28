@@ -31,9 +31,9 @@ export default function AdminDashboard() {
       <main className="flex-1 p-6 mt-10 md:ml-64">
         <h2 className="text-2xl font-semibold mb-6">Welcome, {user.fullName}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <StatCard icon={FaUser} label="Total Users" value={stats.users} />
-          <StatCard icon={FaUserTie} label="Preceptors" value={stats.supervisors} />
-          <StatCard icon={FaUserGraduate} label="Students" value={stats.students} />
+          <StatCard icon={FaUser} label="Total Users" value={stats.users} color="orange"/>
+          <StatCard icon={FaUserTie} label="Preceptors" value={stats.supervisors} color="blue"/>
+          <StatCard icon={FaUserGraduate} label="Students" value={stats.students} color="green"/>
         </div>
       </main>
     </div>

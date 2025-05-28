@@ -137,7 +137,15 @@ const CreateUserPage = () => {
         )}
 
         <Box mt={3}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" 
+             sx={{
+    mt: 2,
+    backgroundColor: '#de7225',
+    '&:hover': {
+      backgroundColor: '#c96120',
+    },
+  }}
+          fullWidth>
             Create User
           </Button>
         </Box>

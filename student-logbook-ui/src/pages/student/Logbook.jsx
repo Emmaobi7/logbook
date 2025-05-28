@@ -5,10 +5,12 @@ import { FiInbox } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import ExportTableToPDF from "../../components/ExportTableToPdf";
 import EditLogModal from './EditLogEntry';
+import { useAuth } from "../../context/AuthContext";
 
 
 
 export default function Logbook() {
+  const { user } = useAuth();
   const [logs, setLogs] = useState([]);
   const [newEntry, setNewEntry] = useState({ description: '', title: '' });
   const [loadingLogs, setLoadingLogs] = useState(false);
@@ -92,7 +94,7 @@ return (
   <div className="flex min-h-screen bg-gray-100">
     <Sidebar />
     <main className="flex-1 p-6 mt-16">
-      <h1 className="text-3xl font-semibold mb-6">My Logbook</h1>
+      <h1 className="text-3xl font-semibold mb-6">{user.fullName}'s Logbook</h1>
 
       <form
         onSubmit={handleSubmit}
@@ -134,8 +136,8 @@ return (
           type="submit"
           className={`px-6 py-2 rounded text-white ${
             submitting
-              ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700'
+              ? 'bg-gray-400 btn-disabled cursor-not-allowed'
+              : 'btn-primary hover:bg-blue-700'
           }`}
           disabled={submitting}
         >

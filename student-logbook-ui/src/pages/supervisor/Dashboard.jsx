@@ -43,16 +43,16 @@ const SupervisorDashboard = () => {
           <p>Loading stats...</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <StatCard label="Total Students" value={stats.total_students} icon={FaUserGraduate} />
-            <StatCard label="Pending Logs" value={stats.pending_logs} icon={FaClipboardList} />
-            <StatCard label="Approved Logs" value={stats.approved_logs} icon={FaCheckCircle} />
-            <StatCard label="Rejected Logs" value={stats.rejected_logs} icon={FaTimesCircle} />
+            <StatCard label="Total Students" value={stats.total_students} icon={FaUserGraduate} color="blue"/>
+            <StatCard label="Pending Logs" value={stats.pending_logs} icon={FaClipboardList} color="yellow"/>
+            <StatCard label="Approved Logs" value={stats.approved_logs} icon={FaCheckCircle} color="green"/>
+            <StatCard label="Rejected Logs" value={stats.rejected_logs} icon={FaTimesCircle} color="red"/>
           </div>
 
         )}
 
         {/* Recent Logs Table */}
-        <div className="bg-blue-100 p-6 rounded shadow">
+        <div className="dashboard-bg p-6 rounded shadow">
           <h3 className="text-lg font-medium mb-4">Recent Log Submissions</h3>
           <RecentLogsTable />
         </div>
@@ -63,10 +63,10 @@ const SupervisorDashboard = () => {
 
 
 
-function StatCard({ label, value, icon: Icon }) {
+function StatCard({ label, value, icon: Icon, color = '' }) {
   return (
-    <div className="bg-blue-100 shadow rounded-lg p-6 flex items-center space-x-4">
-      <div className="text-blue-600 text-3xl">
+    <div className={`bg-${color}-100 shadow rounded-lg p-6 flex items-center space-x-4`}>
+      <div className={`text-${color}-600 text-3xl`}>
         <Icon />
       </div>
       <div>
@@ -76,6 +76,7 @@ function StatCard({ label, value, icon: Icon }) {
     </div>
   );
 }
+
 
 
 export default SupervisorDashboard;

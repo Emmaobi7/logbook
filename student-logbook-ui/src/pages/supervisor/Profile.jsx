@@ -52,8 +52,8 @@ export default function SupervisorProfile() {
   return (
     <div className="flex min-h-screen">
         <Sidebar />
-    <div className="w-full mx-5 bg-white dark:bg-gray-500 rounded-xl shadow p-8 mt-10">
-      <h2 className="text-2xl font-semibold text-gray-800 dark:text-white mb-6">
+    <div className="w-full mx-5  text-black rounded-xl shadow p-8 mt-10">
+      <h2 className="text-2xl font-semibold text-black mb-6">
         Preceptor's Profile
       </h2>
       {loading ? (
@@ -61,7 +61,7 @@ export default function SupervisorProfile() {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Full Name</label>
+            <label className="block text-sm text-black  mb-1">Full Name</label>
             <input
               type="text"
               name="fullName"
@@ -72,7 +72,7 @@ export default function SupervisorProfile() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Email</label>
+            <label className="block text-sm text-black-600 dark:text-black-300 mb-1">Email</label>
             <input
               type="email"
               name="email"
@@ -84,7 +84,7 @@ export default function SupervisorProfile() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Country</label>
+            <label className="block text-sm text-black mb-1">Country</label>
             <input
               type="text"
               name="country"
@@ -95,7 +95,7 @@ export default function SupervisorProfile() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Phone</label>
+            <label className="block text-sm text-black  mb-1">Phone</label>
             <input
               type="tel"
               name="phone"
@@ -106,7 +106,7 @@ export default function SupervisorProfile() {
           </div>
 
           <div>
-            <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Specialty</label>
+            <label className="block text-sm text-black mb-1">Specialty</label>
             <input
               type="text"
               name="specialty"
@@ -119,7 +119,7 @@ export default function SupervisorProfile() {
           <button
             type="submit"
             disabled={saving}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md transition"
+            className="btn-secondary hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md transition"
           >
             {saving ? "Saving..." : "Update Profile"}
           </button>

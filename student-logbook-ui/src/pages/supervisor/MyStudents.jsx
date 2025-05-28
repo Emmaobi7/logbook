@@ -198,7 +198,7 @@ const LogRow = ({ log, onStatusChange }) => {
           {canEdit && (
             <button
               onClick={handleSave}
-              className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+              className="btn-primary text-white px-3 py-1 rounded hover:bg-blue-700"
             >
               Save
             </button>

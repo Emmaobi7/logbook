@@ -26,7 +26,7 @@ const NotificationsPage = () => {
   return (
      <div className="flex min-h-screen">
           <Sidebar />
-    <div className="flex-1 p-6 mt-16 md:ml-6 bg-gray-100 dark:bg-gray-400 text-gray-800 dark:text-white">
+    <div className="flex-1 p-6 mt-16 ml-6 mr-6 bg-gray-100 dark:bg-gray-400 text-gray-800 dark:text-white">
       <div className="flex items-center gap-3 mb-6">
         <MdNotifications className="text-2xl text-blue-600 dark:text-blue-400" />
         <h1 className="text-2xl font-semibold">My Notifications</h1>

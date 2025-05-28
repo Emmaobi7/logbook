@@ -50,7 +50,15 @@ const UserDetailsModal = ({ user, onClose }) => {
   };
 
   return (
-    <Dialog open onClose={() => onClose(false)} maxWidth="sm" fullWidth>
+    <Dialog open onClose={() => onClose(false)} 
+      PaperProps={{
+    sx: {
+      width: '90%',         // full width
+      maxWidth: '400px',     // max width for small screens
+      mx: 2                  // horizontal margin to avoid screen edges
+    }
+  }}
+    >
       <DialogTitle>Edit User: {user.fullName}</DialogTitle>
       <DialogContent dividers>
         <TextField
@@ -114,7 +122,13 @@ const UserDetailsModal = ({ user, onClose }) => {
         <Button
           onClick={handleSubmit}
           variant="contained"
-          color="primary"
+           sx={{
+    mt: 2,
+    backgroundColor: '#de7225',
+    '&:hover': {
+      backgroundColor: '#c96120',
+    },
+  }}
           disabled={loading}
           startIcon={loading && <CircularProgress size={18} />}
         >

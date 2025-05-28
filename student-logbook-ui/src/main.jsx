@@ -5,6 +5,8 @@ import App from './App.jsx';
 import { Provider } from 'react-redux';
 import store from './store';
 import './index.css'; // or './main.css'
+import logo from './assets/wps.jpeg';
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

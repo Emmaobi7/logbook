@@ -31,6 +31,7 @@ const SupervisorInviteForm = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
         <Sidebar />
+        
         <Box mt={10} maxWidth="400px" mx="auto">
             
         <Typography variant="h6" gutterBottom>
@@ -39,6 +40,7 @@ const SupervisorInviteForm = () => {
 
         {successMsg && <Alert severity="success">{successMsg}</Alert>}
         {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
+       
 
         <form onSubmit={handleSubmit}>
             <TextField
@@ -61,15 +63,21 @@ const SupervisorInviteForm = () => {
 
             <Button
             variant="contained"
-            color="primary"
             type="submit"
             disabled={loading}
-            sx={{ mt: 2 }}
+             sx={{
+                mt: 2,
+                backgroundColor: '#de7225',
+                '&:hover': {
+                  backgroundColor: '#c96120',
+                },
+              }}
             >
             {loading ? 'Sending...' : 'Send Invite'}
             </Button>
         </form>
         </Box>
+        
     </div>
   );
 };

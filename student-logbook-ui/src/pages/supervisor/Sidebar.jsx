@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { FaRegQuestionCircle, FaUsers, FaBars, FaTimes, FaUserGraduate, FaClipboardList, FaFileExport, FaHome, FaSignOutAlt, FaUser, FaBell } from "react-icons/fa";
 import { MdAssignment } from 'react-icons/md';
+import logo from '../../assets/wps2.png';
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,7 @@ export default function Sidebar() {
     <>
       {/* Mobile Top Bar - Only shows on mobile */}
       {isMobile && (
-        <div className="md:hidden bg-blue-800 p-4 flex justify-between items-center text-white fixed top-0 left-0 right-0 z-50">
+        <div className="md:hidden sidebar p-4 flex justify-between items-center text-white fixed top-0 left-0 right-0 z-50">
           <h1 className="text-lg font-bold">LOGBOOK</h1>
           <button onClick={() => setOpen(!open)}>
             {open ? <FaTimes size={24} /> : <FaBars size={24} />}
@@ -64,18 +65,21 @@ export default function Sidebar() {
 
       {/* Sidebar Panel */}
       <div
-        className={`fixed top-0 left-0 h-full w-64 bg-blue-900 text-white z-40 p-4 transition-transform duration-300 ease-in-out
+        className={`fixed top-0 left-0 h-full w-64 sidebar text-white z-40 p-4 transition-transform duration-300 ease-in-out
         ${open || !isMobile ? "translate-x-0" : "-translate-x-full"} 
         md:translate-x-0 md:relative`}
       >
-        <h2 className="text-xl font-bold mb-6">Dashboard</h2>
+        <h2 className="text-xl font-bold mb-6">Preceptor</h2>
         <nav className="space-y-3">
+           <div className=''>
+                           <img src={logo} alt="Logo" className="mx-auto w-full h-auto mb-2" />
+                    </div>
           {links.map((link) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`flex items-center gap-3 px-4 py-2 rounded hover:bg-blue-700 transition ${
-                location.pathname === link.to ? 'bg-blue-700' : ''
+              className={`flex items-center gap-3 px-4 py-2 rounded hover:bg-black transition ${
+                location.pathname === link.to ? 'bg-black' : ''
               }`}
               onClick={() => isMobile && setOpen(false)}
             >
@@ -85,7 +89,7 @@ export default function Sidebar() {
             </Link>
           ))}
           <button
-                  className="flex items-center gap-3 px-4 py-2 mt-4 text-red-600 hover:bg-red-100 rounded-lg"
+                  className="flex items-center gap-3 px-4 py-2 mt-4 btn-logout rounded-lg"
                   onClick={() => handleLogout()}
                 >
                   <FaSignOutAlt />

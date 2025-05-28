@@ -81,13 +81,13 @@ export default function StudentProfile() {
   return (
     <div className="flex flex-col md:flex-row overflow-x-hidden">
       <Sidebar />
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen w-full bg-gray-50 flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-5xl bg-white p-8 rounded-2xl shadow-xl">
         <h2 className="text-3xl font-bold text-blue-700 mb-8 text-center"></h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Profile Image Upload */}
           <div className="flex flex-col items-center md:items-start md:col-span-1">
-            <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-blue-500 shadow-md hover:shadow-lg transition">
+            <div className="relative w-36 h-36 rounded-full overflow-hidden border-4 border-orange-500 shadow-md hover:shadow-lg transition">
               <img
                 src={baseURL + passportPreview || "/placeholder-avatar.png"}
                 alt="Passport"
@@ -95,7 +95,7 @@ export default function StudentProfile() {
               />
               <label
                 htmlFor="passport-upload"
-                className="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-700 p-2 rounded-full cursor-pointer transition"
+                className="absolute bottom-0 right-0 bg-blue-600 hover:bg-blue-900 p-2 rounded-full cursor-pointer transition"
                 title="Upload photo"
               >
                 <FaCamera className="text-white p-2" />
@@ -127,7 +127,7 @@ export default function StudentProfile() {
           <div className="md:col-span-2 mt-6 text-center">
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium shadow-md transition"
+              className="btn-primary text-white px-8 py-3 rounded-lg font-medium shadow-md transition"
             >
               Save Profile
             </button>

@@ -85,7 +85,7 @@ const SupervisorGuide = () => {
     <Slide in direction="up" timeout={500}>
       <div className="mt-10">
       <Box p={3} maxWidth="800px" mx="auto">
-        <Typography variant="h4" gutterBottom color="primary" fontWeight="bold">
+        <Typography variant="h4" gutterBottom color="#de7225" fontWeight="bold">
           Preceptor Guide
         </Typography>
 

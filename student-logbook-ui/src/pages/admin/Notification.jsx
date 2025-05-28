@@ -184,7 +184,13 @@ const NotificationsPage = () => {
 
         <Button
           variant="contained"
-          color="primary"
+           sx={{
+    mt: 2,
+    backgroundColor: '#de7225',
+    '&:hover': {
+      backgroundColor: '#c96120',
+    },
+  }}
           type="submit"
           disabled={sending}
           fullWidth

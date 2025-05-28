@@ -4,6 +4,7 @@ import { MdDashboard, MdSettings, MdPeople, MdAssignment, MdSend, MdPersonAdd, M
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { FaSignOutAlt, FaRegQuestionCircle } from 'react-icons/fa';
 import { useAuth } from "../../context/AuthContext";
+import logo from '../../assets/wps2.png';
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -50,7 +51,7 @@ export default function Sidebar() {
     <>
       {/* Mobile toggle button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-40 p-2 rounded-md bg-blue-900 text-white"
+        className="md:hidden fixed top-4 left-4 z-40 p-2 rounded-md sidebar text-white"
         onClick={() => setOpen(!open)}
         aria-label="Toggle sidebar"
       >
@@ -65,7 +66,7 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full bg-blue-900 text-white w-64 p-6 transform ${
+        className={`fixed top-0 left-0 h-full sidebar text-white w-64 p-6 transform ${
           open ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 z-50`}
       >
@@ -73,6 +74,7 @@ export default function Sidebar() {
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
             <h1 className="text-xl font-bold">Admin Panel</h1>
+            
             <button
               className="md:hidden text-white"
               onClick={() => setOpen(false)}
@@ -80,10 +82,15 @@ export default function Sidebar() {
             >
               <FaTimes size={20} />
             </button>
+            
           </div>
+          <div className='flex flex-col h-full'>
+              <img src={logo} alt="Logo" className="mx-auto w-full h-auto mb-2" />
+            </div>
 
           {/* Navigation */}
           <nav className="flex-1 flex flex-col gap-2">
+            
             <NavItem to="/admin/dashboard" icon={<MdDashboard />} text="Dashboard" />
             <NavItem to="/admin/users" icon={<MdPeople />} text="Users" />
             <NavItem to="/admin/notification" icon={<MdAssignment />} text="Send Notification" />
@@ -92,7 +99,7 @@ export default function Sidebar() {
             <NavItem to="/admin/assign" icon={<MdSupervisorAccount />} text="Assign preceptor" />
             <NavItem to="/admin/guide" icon={<FaRegQuestionCircle />} text="Guide" />
             <button
-                              className="flex items-center gap-3 px-4 py-2 mt-4 text-red-600 hover:bg-red-100 rounded-lg"
+                              className="flex items-center gap-3 px-4 py-2 mt-4 btn-logout rounded-lg"
                               onClick={() => handleLogout()}
                             >
                               <FaSignOutAlt />
@@ -101,7 +108,7 @@ export default function Sidebar() {
           </nav>
 
           {/* Footer */}
-          <div className="mt-auto pt-4 border-t border-blue-800">
+          <div className="mt-auto pt-4 border-t border-gray-800">
             <p className="text-sm text-blue-300">v1.0.0</p>
           </div>
         </div>
@@ -118,8 +125,8 @@ function NavItem({ to, icon, text }) {
       className={({ isActive }) =>
         `flex items-center gap-3 p-3 rounded-md transition-colors ${
           isActive
-            ? "bg-blue-800 text-white"
-            : "text-blue-200 hover:bg-blue-800 hover:text-white"
+            ? "bg-black text-white"
+            : "text-blue-200 hover:bg-black hover:text-white"
         }`
       }
     >

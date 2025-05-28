@@ -76,7 +76,7 @@ const AdminGuide = () => {
           <div className="md:ml-64 flex-1 p-4">
     <Slide in direction="up" timeout={500}>
       <Box p={3} maxWidth="800px" mx="auto" className='md:ml-64 p-4'>
-        <Typography variant="h4" gutterBottom color="primary" fontWeight="bold">
+        <Typography variant="h4" gutterBottom color="#de7225" fontWeight="bold">
           Admin Guide
         </Typography>
 

@@ -10,3 +10,96 @@ html, body {
   background-color: #f3f4f6; /* Tailwind's gray-100 */
   margin: 0;
 }
+
+
+.orange-gradient-bg {
+  background: linear-gradient(
+    to bottom right,
+     #de7225,
+    #5a2f0c,
+    #2e1606 
+  );
+}
+
+
+.sidebar {
+    background: linear-gradient(
+    to bottom right,
+    #de7225,
+    #a44a0e
+  );
+  
+}
+
+.dashboard-bg {
+  background-color: #fff8f3; /* very soft orange-tinted white */
+  color: #000000;
+}
+
+
+
+.btn-primary {
+  background-color: #de7225;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #c96120; /* darker orange on hover */
+  cursor: pointer;
+}
+
+
+
+.btn-secondary {
+  background-color: transparent;
+  color: #de7225;
+  border: 2px solid #de7225;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #de7225;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+
+.btn-disabled {
+  background-color: #e0e0e0;
+  color: #888888;
+  cursor: not-allowed;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+
+
+
+
+.btn-logout {
+  background-color: #de7225;
+  color: red;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-logout:hover {
+  background-color: #c96120; /* darker orange on hover */
+  cursor: pointer;
+}

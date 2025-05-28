@@ -83,7 +83,7 @@ const StudentGuide = () => {
     <div className="flex flex-col md:flex-row overflow-x-hidden">
       <Sidebar />
     <Container maxWidth="md" sx={{ py: 6 }}>
-      <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#1976d2" }}>
+      <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", color: "#de7225" }}>
         🎓 Student Guide
       </Typography>
       <Typography variant="body1" sx={{ mb: 4 }}>
@@ -102,7 +102,7 @@ const StudentGuide = () => {
           </AccordionSummary>
           <AccordionDetails>
             {section.content.split("\n").map((line, idx) => (
-              <Typography key={idx} variant="body2" sx={{ mb: 1 }}>
+              <Typography key={idx} variant="body2" sx={{ mb: 1, color: "#de7225" }}>
                 {line.trim()}
               </Typography>
             ))}

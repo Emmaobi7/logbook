@@ -242,7 +242,15 @@ const UsersPage = () => {
           onChange={handleFilterChange('search')}
         />
 
-        <Button variant="contained" onClick={fetchUsers}>
+        <Button variant="contained" onClick={fetchUsers} 
+           sx={{
+    mt: 2,
+    backgroundColor: '#de7225',
+    '&:hover': {
+      backgroundColor: '#c96120',
+    },
+  }}
+        > 
           Refresh
         </Button>
       </div>
