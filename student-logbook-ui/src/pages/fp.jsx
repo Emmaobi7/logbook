@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import GlassCard from "../components/GlassCard";
 import logo from '../assets/wapcp2-removebg-preview.png';
+import { Link } from "react-router-dom";
 
 const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
@@ -61,9 +62,13 @@ const ForgotPassword = () => {
         </form>
         <p className="text-sm mt-4">
           Remembered your password?{" "}
-          <a href="/login" className="text-blue-400 underline">
+          <Link
+            to="/login"
+            className="text-[#de7225] underline hover:text-orange-600 transition duration-200"
+          >
             Login
-          </a>
+          </Link>
+
         </p>
       </GlassCard>
     </div>

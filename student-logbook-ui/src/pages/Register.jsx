@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import GlassCard from "../components/GlassCard";
 import { useAuth } from "../context/AuthContext";
@@ -112,9 +112,13 @@ const Register = () => {
         </form>
         <p className="text-sm mt-4">
           Already have an account?{" "}
-          <a href="/login" className="text-blue-400 underline">
+          <Link
+            to="/login"
+            className="text-[#de7225] underline hover:text-orange-600 transition duration-200"
+          >
             Login
-          </a>
+          </Link>
+
         </p>
       </GlassCard>
     </div>

@@ -29,6 +29,7 @@ import AdminGuide from '../pages/admin/AdminGuide';
 import SupervisorStudents from '../pages/supervisor/Students';
 import ForgotPassword from '../pages/fp';
 import ResetPassword from '../pages/reset-password';
+import LandingPage from '../pages/LandingPage';
 
 function App() {
   return (
@@ -232,9 +233,7 @@ function App() {
           <Route
             path="/"
             element={
-              <ProtectedRoute requiredRole="student">
-                <StudentDashboard />
-              </ProtectedRoute>
+                <LandingPage />
             }
           />
 

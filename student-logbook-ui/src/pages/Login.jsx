@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import GlassCard from "../components/GlassCard";
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/wapcp2-removebg-preview.png';
@@ -102,13 +102,21 @@ const Login = () => {
         </form>
         <p className="text-sm mt-4">
           Don't have an account?{" "}
-          <a href="/register" className="text-blue-700 underline">
-            Register
-          </a>
+        <Link
+          to="/register"
+          className="text-[#de7225] underline hover:text-orange-600 transition duration-200"
+        >
+          Register
+        </Link>
+
           <br />
-          <a href="/fp" className="text-blue-700 underline">
+          <Link
+            to="/fp"
+            className="text-[#de7225] underline hover:text-orange-600 transition duration-200"
+          >
             Forgotten Password?
-          </a>
+          </Link>
+
         </p>
       </GlassCard>
     </div>

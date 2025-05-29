@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import GlassCard from "../components/GlassCard";
 import logo from '../assets/wapcp2-removebg-preview.png';
@@ -103,9 +103,12 @@ const ResetPassword = () => {
         </form>
         <p className="text-sm mt-4">
           Back to{" "}
-          <a href="/login" className="text-blue-400 underline">
-            Login
-          </a>
+          <Link
+                      to="/login"
+                      className="text-[#de7225] underline hover:text-orange-600 transition duration-200"
+                    >
+                      Login
+          </Link>
         </p>
       </GlassCard>
     </div>
