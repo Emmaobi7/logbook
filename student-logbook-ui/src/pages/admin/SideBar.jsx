@@ -84,7 +84,7 @@ export default function Sidebar() {
             </button>
             
           </div>
-          <div className='flex flex-col h-full'>
+          <div className=''>
               <img src={logo} alt="Logo" className="mx-auto w-full h-auto mb-2" />
             </div>
 
