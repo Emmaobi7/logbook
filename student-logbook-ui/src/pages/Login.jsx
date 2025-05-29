@@ -96,7 +96,7 @@ const Login = () => {
             Must be at least 6 characters, include uppercase, lowercase, and a number.
           </p>
 
-          <button disabled={loading} className="text-white bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 p-3 rounded-lg font-semibold transition">
+          <button disabled={loading} className="text-white bg-gray-900 dark:bg-gray-950 hover:bg-gray-950 p-3 rounded-lg font-semibold transition">
             { loading ? "hold on..." : "Login" } 
           </button>
         </form>
