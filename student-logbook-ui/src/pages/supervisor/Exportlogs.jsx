@@ -175,7 +175,7 @@ useEffect(() => {
   return (
     <div className="flex min-h-screen">
             <Sidebar />
-    <Box sx={{ maxWidth: 500, mx: "auto", p: 4, textAlign: "center" }}>
+    <Box sx={{ maxWidth: 500, mx: "auto", mt: 10, p: 4, textAlign: "center" }}>
       <Typography variant="h5" mb={3}>
         Export Student Logs
       </Typography>
