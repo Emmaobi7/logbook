@@ -1,7 +1,8 @@
 // controllers/logbookController.js
 const LogbookEntry = require('../models/LogbookEntry');
-const PDFDocument = require('pdfkit');
-const PDFTable = require('pdfkit-table');
+const PDFDocument = require('pdfkit-table');
+const User = require("../models/User");
+
 
 
 exports.createEntry = async (req, res) => {
@@ -72,65 +73,65 @@ exports.getMyEntries = async (req, res) => {
 
 
 
-exports.exportLogbookPDF = async (req, res) => {
-  const userId = req.user.userId;
+// exports.exportLogbookPDF = async (req, res) => {
+//   const userId = req.user.userId;
 
-  if (!userId) {
-    return res.status(404).json({ message: 'User not found' });
-  }
+//   if (!userId) {
+//     return res.status(404).json({ message: 'User not found' });
+//   }
 
-  try {
-    const entries = await LogbookEntry.find({ user: userId }).sort({ date: -1 });
+//   try {
+//     const entries = await LogbookEntry.find({ user: userId }).sort({ date: -1 });
 
-    if (!entries.length) {
-      return res.status(404).json({ message: 'No logbook entries found to export' });
-    }
+//     if (!entries.length) {
+//       return res.status(404).json({ message: 'No logbook entries found to export' });
+//     }
 
-    // Set response headers for PDF
-    res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=logbook-report.pdf');
+//     // Set response headers for PDF
+//     res.setHeader('Content-Type', 'application/pdf');
+//     res.setHeader('Content-Disposition', 'attachment; filename=logbook-report.pdf');
 
-    const doc = new PDFDocument({ margin: 40, size: 'A4' });
+//     const doc = new PDFDocument({ margin: 40, size: 'A4' });
 
-    doc.pipe(res);
+//     doc.pipe(res);
 
-    // Title
-    doc.fontSize(18).text('Logbook Report', { align: 'center' });
-    doc.moveDown();
+//     // Title
+//     doc.fontSize(18).text('Logbook Report', { align: 'center' });
+//     doc.moveDown();
 
-    // Add some meta info
-    doc.fontSize(12).text(`User ID: ${userId}`, { align: 'right' });
-    doc.text(`Date: ${new Date().toLocaleDateString()}`, { align: 'right' });
-    doc.moveDown();
+//     // Add some meta info
+//     doc.fontSize(12).text(`User ID: ${userId}`, { align: 'right' });
+//     doc.text(`Date: ${new Date().toLocaleDateString()}`, { align: 'right' });
+//     doc.moveDown();
 
-    // Table headers
-    doc.fontSize(12).fillColor('black');
-    doc.text('Date', 50, doc.y, { continued: true, width: 90 });
-    doc.text('Activity', 140, doc.y, { continued: true, width: 150 });
-    doc.text('Competencies', 290, doc.y, { continued: true, width: 150 });
-    doc.text('Status', 440, doc.y, { continued: true, width: 80 });
-    doc.text('Comments', 520, doc.y, { width: 70 });
-    doc.moveDown(0.5);
-    doc.strokeColor('#aaa').moveTo(50, doc.y).lineTo(560, doc.y).stroke();
-    doc.moveDown(0.5);
+//     // Table headers
+//     doc.fontSize(12).fillColor('black');
+//     doc.text('Date', 50, doc.y, { continued: true, width: 90 });
+//     doc.text('Activity', 140, doc.y, { continued: true, width: 150 });
+//     doc.text('Competencies', 290, doc.y, { continued: true, width: 150 });
+//     doc.text('Status', 440, doc.y, { continued: true, width: 80 });
+//     doc.text('Comments', 520, doc.y, { width: 70 });
+//     doc.moveDown(0.5);
+//     doc.strokeColor('#aaa').moveTo(50, doc.y).lineTo(560, doc.y).stroke();
+//     doc.moveDown(0.5);
 
-    // Entries rows
-    entries.forEach(entry => {
-      doc.fontSize(10);
-      doc.text(new Date(entry.date).toLocaleDateString(), 50, doc.y, { continued: true, width: 90 });
-      doc.text(entry.title || '-', 140, doc.y, { continued: true, width: 150 });
-      doc.text(entry.content || '-', 290, doc.y, { continued: true, width: 150 });
-      doc.text(entry.status || 'Pending', 440, doc.y, { continued: true, width: 80 });
-      doc.text(entry.comments || '-', 520, doc.y, { width: 70 });
-      doc.moveDown();
-    });
+//     // Entries rows
+//     entries.forEach(entry => {
+//       doc.fontSize(10);
+//       doc.text(new Date(entry.date).toLocaleDateString(), 50, doc.y, { continued: true, width: 90 });
+//       doc.text(entry.title || '-', 140, doc.y, { continued: true, width: 150 });
+//       doc.text(entry.content || '-', 290, doc.y, { continued: true, width: 150 });
+//       doc.text(entry.status || 'Pending', 440, doc.y, { continued: true, width: 80 });
+//       doc.text(entry.comments || '-', 520, doc.y, { width: 70 });
+//       doc.moveDown();
+//     });
 
-    doc.end();
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Failed to export logbook entries as PDF' });
-  }
-};
+//     doc.end();
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: 'Failed to export logbook entries as PDF' });
+//   }
+// };
 
 
 
@@ -185,5 +186,73 @@ exports.updateLog = async (req, res) => {
 };
 
 
+
+require('pdfkit-table'); // Patches PDFDocument
+
+exports.exportLogbookPDF = async (req, res) => {
+  const userId = req.user.userId;
+
+  if (!userId) {
+    return res.status(404).json({ message: 'User not found' });
+  }
+
+  const user = await User.findById(userId).select('-password');
+
+  try {
+    const entries = await LogbookEntry.find({ user: userId }).sort({ date: -1 });
+
+    if (!entries.length) {
+      return res.status(404).json({ message: 'No logbook entries found to export' });
+    }
+
+
+    res.setHeader('Content-Type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=logbook-report.pdf');
+ 
+
+
+    const doc = new PDFDocument({ margin: 40, size: 'A4' });
+    doc.pipe(res);
+
+    // Title
+    doc.fontSize(15).text('West African Postgraduate College of Pharmacists', {align: 'center'});
+    doc.fontSize(10).text('Collège de Troisième Cycle des Pharmaciens de l\'Afrique de l\'Ouest', {align: 'center'}).moveDown(1);
+    doc.fontSize(18).text(`${user.fullName}'s Logbook Report`, { align: 'center' }).moveDown();
+
+    doc.fontSize(12).text(`User: ${user.email}`, { align: 'right' });
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, { align: 'right' });
+    doc.moveDown();
+
+
+    const table = {
+      headers: [
+        { label: 'Date', property: 'date', width: 90 },
+        { label: 'Activity', property: 'activity', width: 150 },
+        { label: 'Competencies', property: 'competencies', width: 150 },
+        { label: 'Status', property: 'status', width: 80 },
+        { label: 'Comments', property: 'comments', width: 100 }
+      ],
+      datas: entries.map(entry => ({
+        date: new Date(entry.date).toLocaleDateString(),
+        activity: entry.title || '-',
+        competencies: entry.content || '-',
+        status: entry.status || 'Pending',
+        comments: entry.comments || '-'
+      }))
+    };
+
+
+    await doc.table(table, {
+      prepareHeader: () => doc.font('Helvetica-Bold').fontSize(12),
+      prepareRow: (row, i) => doc.font('Helvetica').fontSize(10),
+    });
+    
+
+    doc.end(); // Only after await doc.table()
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to export logbook entries as PDF' });
+  }
+};
 
 

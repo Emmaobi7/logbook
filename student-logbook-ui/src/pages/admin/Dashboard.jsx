@@ -29,7 +29,17 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-100 flex">
       <Sidebar />
       <main className="flex-1 p-6 mt-10 md:ml-64">
+        
         <h2 className="text-2xl font-semibold mb-6">Welcome, {user.fullName}</h2>
+        <div class="text-center mt-4 mb-6">
+          <p class="text-lg font-bold text-green-800">
+            West African Postgraduate College of Pharmacists
+          </p>
+          <p class="text-sm text-gray-600 italic">
+            Collège de Troisième Cycle des Pharmaciens de l'Afrique de l'Ouest
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <StatCard icon={FaUser} label="Total Users" value={stats.users} color="orange"/>
           <StatCard icon={FaUserTie} label="Preceptors" value={stats.supervisors} color="blue"/>

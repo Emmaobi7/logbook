@@ -35,8 +35,17 @@ const SupervisorDashboard = () => {
     <div className="flex min-h-screen">
       <Sidebar />
 
-      <main className="flex-1 p-4 md:ml-10 bg-gray-100 transition-all">
+      <main className="flex-1 p-4 md:ml-10 mt-16 bg-gray-100 transition-all">
         <h2 className="text-2xl font-semibold mb-6">Welcome, {user.fullName}</h2>
+        <div class="text-center mt-4 mb-6">
+          <p class="text-lg font-bold text-green-800">
+            West African Postgraduate College of Pharmacists
+          </p>
+          <p class="text-sm text-gray-600 italic">
+            Collège de Troisième Cycle des Pharmaciens de l'Afrique de l'Ouest
+          </p>
+        </div>
+
 
         {/* Stat Cards */}
         {loading ? (
