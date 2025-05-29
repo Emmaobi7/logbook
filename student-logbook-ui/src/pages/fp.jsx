@@ -31,9 +31,9 @@ const ForgotPassword = () => {
   return (
     <div className="min-h-screen orange-gradient-bg text-black flex items-center justify-center">
       <GlassCard>
-        <div className="flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
+        <div className="flex flex-col items-center justify-center bg-gray-900 dark:bg-gray-950 p-4">
   <img src={logo} alt="Logo" className="mx-auto w-20 h-auto mb-2" />
-  <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white text-center leading-snug">
+  <h1 className="text-xl md:text-2xl font-semibold text-white dark:text-white text-center leading-snug">
     West African Postgraduate College of Pharmacists
   </h1>
   <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 text-center">
@@ -55,7 +55,7 @@ const ForgotPassword = () => {
           />
           <button
             disabled={loading}
-            className="text-white bg-gray-50 dark:bg-gray-900 hover:bg-gray-950 p-3 rounded-lg font-semibold transition"
+            className="text-white bg-gray-900 hover:bg-gray-950 p-3 rounded-lg font-semibold transition"
           >
             {loading ? "Sending..." : "Send Reset Link"}
           </button>

@@ -63,7 +63,7 @@ const Login = () => {
       <GlassCard className="bg-gray">
         <div className="flex flex-col items-center justify-center bg-gray-900 dark:bg-gray-950 hover:bg-gray-950 p-4">
           <img src={logo} alt="Logo" className="mx-auto w-20 h-auto mb-2" />
-          <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white text-center leading-snug">
+          <h1 className="text-xl md:text-2xl font-semibold text-white-800 dark:text-white text-center leading-snug">
             West African Postgraduate College of Pharmacists
           </h1>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-300 text-center">
@@ -96,9 +96,14 @@ const Login = () => {
             Must be at least 6 characters, include uppercase, lowercase, and a number.
           </p>
 
-          <button disabled={loading} className="text-white bg-gray-900 dark:bg-gray-950 hover:bg-gray-950 p-3 rounded-lg font-semibold transition">
-            { loading ? "hold on..." : "Login" } 
+          <button
+            disabled={loading}
+            className="text-white bg-gray-900 hover:bg-gray-950 p-3 rounded-lg font-semibold transition"
+          >
+            {loading ? "hold on..." : "Login"}
           </button>
+
+
         </form>
         <p className="text-sm mt-4">
           Don't have an account?{" "}
