@@ -29,11 +29,11 @@ export default function StudentDashboard() {
       <Sidebar />
       <div className="flex-1 px-4 md:p-15 p-15">
         <h1 className="text-2xl font-semibold mb-4">Welcome, {user.fullName}</h1>
-        <div class="text-center mt-4 mb-6">
-          <p class="text-lg font-bold text-green-800">
+        <div className="text-center mt-4 mb-6">
+          <p className="text-lg font-bold text-green-800">
             West African Postgraduate College of Pharmacists
           </p>
-          <p class="text-sm text-gray-600 italic">
+          <p className="text-sm text-gray-600 italic">
             Collège de Troisième Cycle des Pharmaciens de l'Afrique de l'Ouest
           </p>
         </div>

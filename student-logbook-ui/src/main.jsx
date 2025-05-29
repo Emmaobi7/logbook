@@ -11,6 +11,8 @@ import logo from './assets/wps.jpeg';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <App />
+  
+  <App />
+    
   </Provider>
 );
