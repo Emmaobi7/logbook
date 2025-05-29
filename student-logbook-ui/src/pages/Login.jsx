@@ -61,7 +61,7 @@ const Login = () => {
   return (
     <div className="min-h-screen orange-gradient-bg text-black flex items-center justify-center">
       <GlassCard className="bg-gray">
-        <div className="flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
+        <div className="flex flex-col items-center justify-center bg-gray-900 dark:bg-gray-950 hover:bg-gray-950 p-4">
           <img src={logo} alt="Logo" className="mx-auto w-20 h-auto mb-2" />
           <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-white text-center leading-snug">
             West African Postgraduate College of Pharmacists
