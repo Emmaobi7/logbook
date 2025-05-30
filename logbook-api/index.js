@@ -41,7 +41,9 @@ app.use('/student', studentProfileRoutes);
 app.use('/supervisor-profile', supervisorProfileRoutes);
 app.use('/admin', adminRoutes);
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+if (process.env.NODE_ENV !== 'production') {
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+}
 
 
 
