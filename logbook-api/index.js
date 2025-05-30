@@ -14,6 +14,12 @@ const supervisorProfileRoutes = require('./routes/supervisorProfile');
 const adminRoutes = require('./routes/adminRoutes');
 
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./utils/swagger');
+
+
+
+
 const app = express();
 
 // Middleware
@@ -29,6 +35,9 @@ app.use('/supervisor', supervisorRoutes);
 app.use('/student', studentProfileRoutes);
 app.use('/supervisor-profile', supervisorProfileRoutes);
 app.use('/admin', adminRoutes);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 
 
 const publicUploadsPath = path.join(__dirname, "public/uploads");
