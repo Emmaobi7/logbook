@@ -74,7 +74,7 @@ export default function Sidebar() {
 
         {/* Sidebar content */}
         <nav className="flex flex-col gap-2">
-          <div className=''>
+          <div className='sidebar-logo'>
                  <img src={logo} alt="Logo" className="mx-auto w-full h-auto mb-2" />
           </div>
           {links.map((link) => (

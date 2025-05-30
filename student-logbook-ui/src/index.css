@@ -5,11 +5,17 @@ button:hover {
     cursor: pointer;
 }
 
+
+
+
 html, body {
   height: 100%;
-  background-color: #030712; 
   margin: 0;
 }
+
+/* .sidebar-logo {
+  background-color: ;
+} */
 
 
 .orange-gradient-bg {
