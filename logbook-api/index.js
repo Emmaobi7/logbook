@@ -23,7 +23,7 @@ const swaggerSpec = require('./utils/swagger');
 const app = express();
 
 const corsOptions = {
-  origin: ['http://localhost:5000', `${process.env.CLIENT_URL}`],
+  origin: ['http://localhost:5173', `${process.env.CLIENT_URL}`],
   credentials: true,
 };
 
