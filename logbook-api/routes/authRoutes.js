@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const { register, login, forgotPassword, resetPassword } = require('../controllers/authController');
-const auth = require('../middlewares/auth');
-const checkRole = require('../middlewares/role');
+const { registerValidator } = require('../middlewares/validators');
+const validateRequest = require('../middlewares/vlr'); // a helper to handle errors
+const validatePassword = require('../middlewares/validatePassword');
+const { loginValidator } = require('../middlewares/loginvalidator');
+
 
 
 /**
@@ -43,7 +46,7 @@ const checkRole = require('../middlewares/role');
  *       400:
  *         description: Validation error
  */
-router.post('/register', register);
+router.post('/register', registerValidator, validateRequest, validatePassword, register);
 
 
 /**
@@ -73,7 +76,7 @@ router.post('/register', register);
  *       401:
  *         description: Invalid credentials
  */
-router.post('/login', login);
+router.post('/login', loginValidator, validateRequest, validatePassword, login);
 
 
 /**
@@ -100,7 +103,7 @@ router.post('/login', login);
  *       404:
  *         description: Email not found
  */
-router.post('/forgot-password', forgotPassword);
+router.post('/forgot-password', registerValidator, validateRequest, validatePassword, forgotPassword);
 
 
 /**
@@ -129,7 +132,7 @@ router.post('/forgot-password', forgotPassword);
  *       400:
  *         description: Invalid or expired token
  */
-router.post('/reset-password', resetPassword);
+router.post('/reset-password', validatePassword, resetPassword);
 
 
 

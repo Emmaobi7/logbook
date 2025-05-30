@@ -8,14 +8,26 @@ const ResetToken = require('../models/ResetTokens');
 const generateToken = require('../utils/generateToken');
 
 exports.register = async (req, res) => {
-  const { fullName, email, password, role } = req.body;
-  if (!role) {
-    const role = "student";
+  let { fullName, email, password, role } = req.body;
+
+  // Normalize the role
+  if (!role || role.trim() === '') {
+    role = 'student';
+  }
+
+  const allowedRoles = ['student', 'admin', 'supervisor'];
+  if (!allowedRoles.includes(role)) {
+    return res.status(400).json({ message: 'Invalid user role' });
+  }
+
+  if (!email || !password || !fullName) {
+    return res.status(400).json({ message: 'Missing required fields'});
   }
 
   try {
     const existing = await User.findOne({ email });
     if (existing) return res.status(400).json({ message: "Email already in use" });
+
 
     const user = await User.create({ fullName, email, password, role });
 
@@ -51,6 +63,11 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Missing required fields" })
+  }
+
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: 'Invalid email or password' });
