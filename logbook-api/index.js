@@ -22,8 +22,13 @@ const swaggerSpec = require('./utils/swagger');
 
 const app = express();
 
-// Middleware
-app.use(cors());
+const corsOptions = {
+  origin: ['http://localhost:5000', `${process.env.CLIENT_URL}`],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 
