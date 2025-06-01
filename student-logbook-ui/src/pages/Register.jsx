@@ -23,6 +23,9 @@ const Register = () => {
     if (!/[a-z]/.test(pwd)) return "Password must contain at least one lowercase letter";
     if (!/[0-9]/.test(pwd)) return "Password must contain at least one number";
     if (password !== password2) return "Paswords dont match!"
+    if (!/[^A-Za-z0-9]/.test(pwd)) {
+      return "Password must contain a special character";
+    }
     return null;
   };
 
@@ -103,8 +106,8 @@ const Register = () => {
             onChange={(e) => setPassword2(e.target.value)}
             required
           />
-          <p className="text-xs text-gray-400">
-            Password must be at least 6 characters, contain upper & lowercase letters, and a number.
+           <p className="text-xs text-black-400">
+            Must be at least 6 characters, include uppercase, lowercase, a number and a special character.
           </p>
           <button disabled={loading} className=" text-white bg-gray-900 hover:bg-gray-950 p-3 rounded-lg font-semibold transition">
             {loading ? "creating..." : "Register" }

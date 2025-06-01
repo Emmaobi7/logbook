@@ -29,6 +29,10 @@ const Login = () => {
     if (!/[0-9]/.test(password)) {
       return setErr("Password must contain at least one number");
     }
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      return setErr("Password must contain a special character");
+    }
+
 
     try {
       setLoading(true)
@@ -93,7 +97,7 @@ const Login = () => {
             required
           />
           <p className="text-xs text-black-400">
-            Must be at least 6 characters, include uppercase, lowercase, and a number.
+            Must be at least 6 characters, include uppercase, lowercase, a number and a special character.
           </p>
 
           <button
