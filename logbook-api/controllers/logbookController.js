@@ -2,19 +2,21 @@
 const LogbookEntry = require('../models/LogbookEntry');
 const PDFDocument = require('pdfkit-table');
 const User = require("../models/User");
-
+const mongoose = require('mongoose');
 
 
 exports.createEntry = async (req, res) => {
   const { description, title } = req.body;
   const userId = req.user.userId;
 
-  if (!userId){
-    return res.status(404).json({ message: 'user not found' })
-  }
+
 
   if (!description || description.trim() === '') {
     return res.status(400).json({ message: 'description is required' });
+  }
+
+   if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: 'Invalid or missing user ID' });
   }
 
     // Get start and end of today
@@ -28,9 +30,9 @@ exports.createEntry = async (req, res) => {
       date: { $gte: startOfDay, $lte: endOfDay },
     });
 
-    // if (existing) {
-    //   return res.status(409).json({ message: 'You have already submitted a log for today.' });
-    // }
+    if (existing) {
+      return res.status(409).json({ message: 'You have already submitted a log for today.' });
+    }
 
   try {
     const entry = await LogbookEntry.create({
@@ -47,7 +49,7 @@ exports.createEntry = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Failed to create logbook entry' });
+    res.status(500).json({ message: err.message })
   }
 };
 
@@ -56,8 +58,8 @@ exports.createEntry = async (req, res) => {
 exports.getMyEntries = async (req, res) => {
   const userId = req.user.userId;
 
-  if (!userId){
-    return res.status(404).json({ message: 'user not found' })
+  if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: 'Invalid or missing user ID' });
   }
 
   try {
@@ -141,8 +143,12 @@ exports.updateLog = async (req, res) => {
   const userId = req.user.userId;
 
   // Validations
-  if (!userId) {
-    return res.status(404).json({ message: 'User not found' });
+  if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ message: 'Invalid or missing user ID' });
+  }
+
+  if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: 'Invalid or missing log ID' });
   }
 
   try {
@@ -192,11 +198,14 @@ require('pdfkit-table'); // Patches PDFDocument
 exports.exportLogbookPDF = async (req, res) => {
   const userId = req.user.userId;
 
-  if (!userId) {
-    return res.status(404).json({ message: 'User not found' });
+  if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: 'Invalid or missing user ID' });
   }
 
   const user = await User.findById(userId).select('-password');
+  if (!user) {
+    return res.status(400).json({message: "user does not exist!"})
+  }
 
   try {
     const entries = await LogbookEntry.find({ user: userId }).sort({ date: -1 });
