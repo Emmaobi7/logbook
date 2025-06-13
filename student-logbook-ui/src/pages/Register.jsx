@@ -46,8 +46,8 @@ const Register = () => {
       const user = res.data.user
       localStorage.setItem("token", res.data.token);
       localStorage.setItem('user', JSON.stringify(user));
-      login(res.data.user);
-      navigate("/student/dashboard");
+      await login(res.data.user);
+      navigate("/login");
     } catch (error) {
       console.log(error)
       setErr(error?.response?.data?.message || "Registration failed");

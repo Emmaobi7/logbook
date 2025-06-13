@@ -13,9 +13,9 @@ html, body {
   margin: 0;
 }
 
-/* .sidebar-logo {
-  background-color: ;
-} */
+.sidebar-logo {
+  background-color: whitesmoke;
+}
 
 
 .orange-gradient-bg {
@@ -36,6 +36,37 @@ html, body {
   );
   
 }
+
+
+.sidebar-student {
+  background: linear-gradient(
+  to bottom right,
+  #2e7d32,  /* darker leaf green */
+  #1b5e20   /* even darker leaf green */
+);
+
+}
+
+
+.sidebar-admin {
+  background: linear-gradient(
+    to bottom right,
+    #1976d2,  /* primary blue */
+    #0d47a1   /* darker blue */
+  );
+}
+
+
+.sidebar-supervisor {
+  background: linear-gradient(
+    to bottom right,
+    #333333,  /* dark gray */
+    #1a1a1a,   /* darker gray */
+    #000000   /* black */
+  );
+}
+
+
 
 .dashboard-bg {
   background-color: #fff8f3; /* very soft orange-tinted white */
@@ -103,6 +134,19 @@ html, body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.3s ease;
+}
+
+.btn-logout-student {
+  background-color: red;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+}
+
+.btn-logout-student:hover {
+  background-color: #e53935;
+  cursor: pointer;
 }
 
 .btn-logout:hover {

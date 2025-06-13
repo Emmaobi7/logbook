@@ -23,10 +23,12 @@ exports.getProfile = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const updates = {
+      number: req.body.number,
       fullName: req.body.fullName,
       phone: req.body.phone,
       faculty: req.body.faculty,
       specialty: req.body.specialty,
+      program: req.body.program,
       country: req.body.country,
       residencySite: req.body.residencySite,
     };

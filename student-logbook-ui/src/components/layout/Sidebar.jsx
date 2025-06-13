@@ -41,7 +41,7 @@ export default function Sidebar() {
     <>
       {/* Mobile hamburger button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md sidebar text-white"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md sidebar-student text-white"
         onClick={() => setIsOpen(true)}
         aria-label="Open sidebar"
       >
@@ -58,7 +58,7 @@ export default function Sidebar() {
 
       <aside
         className={`
-          fixed top-0 left-0 h-full w-64 sidebar shadow-md px-4 py-6
+          fixed top-0 left-0 h-full w-64 sidebar-student shadow-md px-4 py-6
           transform transition-transform duration-300 ease-in-out z-50
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
           md:translate-x-0 md:static md:flex md:flex-col
@@ -95,7 +95,7 @@ export default function Sidebar() {
             </NavLink>
           ))}
           <button
-            className="flex items-center gap-3 px-4 py-2 mt-4 btn-logout rounded-lg"
+            className="flex items-center gap-3 px-4 py-2 mt-4 btn-logout-student rounded-lg"
             onClick={() => handleLogout()}
           >
             <FaSignOutAlt />

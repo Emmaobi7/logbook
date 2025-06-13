@@ -31,8 +31,10 @@ export default function Logbook() {
           setError('Invalid response format from server.');
         }
       } catch (err) {
+        console.log(err)
         // If payment middleware blocks access (403 or 402)
-        if (err.response && (err.response.status === 403 || err.response.status === 402)) {
+        if (err.response && (err.response.status === 403 || err.response.status === 402))
+          {
           navigate('/payment-required');
         } else {
           setError('Failed to fetch logs.');

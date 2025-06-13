@@ -51,7 +51,7 @@ export default function Sidebar() {
     <>
       {/* Mobile toggle button */}
       <button
-        className="md:hidden fixed top-4 left-4 z-40 p-2 rounded-md sidebar text-white"
+        className="md:hidden fixed top-4 left-4 z-40 p-2 rounded-md sidebar-admin text-white"
         onClick={() => setOpen(!open)}
         aria-label="Toggle sidebar"
       >
@@ -66,7 +66,7 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full sidebar text-white w-64 p-6 transform ${
+        className={`fixed top-0 left-0 h-full sidebar-admin text-white w-64 p-6 transform ${
           open ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform duration-300 z-50`}
       >
@@ -85,7 +85,7 @@ export default function Sidebar() {
             
           </div>
           <div className=''>
-              <img src={logo} alt="Logo" className="mx-auto w-full h-auto mb-2" />
+              <img src={logo} alt="Logo" className="sidebar-logo mx-auto w-full h-auto mb-2" />
             </div>
 
           {/* Navigation */}
@@ -99,7 +99,7 @@ export default function Sidebar() {
             <NavItem to="/admin/assign" icon={<MdSupervisorAccount />} text="Assign preceptor" />
             <NavItem to="/admin/guide" icon={<FaRegQuestionCircle />} text="Guide" />
             <button
-                              className="flex items-center gap-3 px-4 py-2 mt-4 btn-logout rounded-lg"
+                              className="flex items-center gap-3 px-4 py-2 mt-4 btn-logout-student rounded-lg"
                               onClick={() => handleLogout()}
                             >
                               <FaSignOutAlt />

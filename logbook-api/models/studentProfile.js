@@ -8,6 +8,8 @@ const studentProfileSchema = new mongoose.Schema({
     unique: true,
   },
   fullName: String,
+  number: String,
+  program: String,
   phone: String,
   faculty: String,
   specialty: String,

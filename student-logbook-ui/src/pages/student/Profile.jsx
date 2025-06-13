@@ -9,11 +9,13 @@ const baseURL = import.meta.env.VITE_API_BASE_URL;
 export default function StudentProfile() {
   const { user } = useAuth();
   const [profile, setProfile] = useState({
+    number: "",
     fullName: user.fullName,
     email: user.email,
     phone: "",
-    faculty: "",
     specialty: "",
+    program: "",
+    faculty: "",
     country: "",
     residencySite: "",
   });
@@ -115,11 +117,13 @@ export default function StudentProfile() {
 
           {/* Profile Fields */}
           <div className="md:col-span-1 space-y-4">
+            <TextInput label="Student Number" name="number" value={profile.number} onChange={handleChange} />
             <TextInput label="Full Name" name="fullName" value={profile.fullName} onChange={handleChange} />
             <TextInput label="Email" name="email" value={user.email} disabled />
             <TextInput label="Phone" name="phone" value={profile.phone} onChange={handleChange} />
-            <TextInput label="Faculty" name="faculty" value={profile.faculty} onChange={handleChange} />
             <TextInput label="Specialty" name="specialty" value={profile.specialty} onChange={handleChange} />
+            <TextInput label="Program" name="program" value={profile.program} onChange={handleChange} />
+            <TextInput label="Faculty" name="faculty" value={profile.faculty} onChange={handleChange} />
             <TextInput label="Country" name="country" value={profile.country} onChange={handleChange} />
             <TextInput label="Residency Site" name="residencySite" value={profile.residencySite} onChange={handleChange} />
           </div>

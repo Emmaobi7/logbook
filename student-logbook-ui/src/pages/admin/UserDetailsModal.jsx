@@ -86,7 +86,7 @@ const UserDetailsModal = ({ user, onClose }) => {
         >
           {roles.map((role) => (
             <MenuItem key={role} value={role}>
-              {role.charAt(0).toUpperCase() + role.slice(1)}
+              {role == 'supervisor' ? role = 'Preceptor' : role.charAt(0).toUpperCase() + role.slice(1)}
             </MenuItem>
           ))}
         </TextField>

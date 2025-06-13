@@ -12,6 +12,7 @@ const checkPayment = async (req, res, next) => {
       });
     }
 
+    console.log('hello4')
     next();
   } catch (err) {
     console.error('checkPayment error:', err);
