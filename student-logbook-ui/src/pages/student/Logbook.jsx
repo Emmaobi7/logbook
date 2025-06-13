@@ -133,6 +133,11 @@ return (
             disabled={submitting}
           />
         </div>
+        <div className="mt-2">
+          <small className="text-gray-500 text-xs">
+            Please submit a detailed description of your activity and the competencies acquired.
+          </small>
+        </div>
 
         <button
           type="submit"
@@ -146,6 +151,7 @@ return (
           {submitting ? 'Saving...' : 'Add Entry'}
         </button>
         {error && <p className="text-red-600 mt-3">{error}</p>}
+
       </form>
 
       <section>

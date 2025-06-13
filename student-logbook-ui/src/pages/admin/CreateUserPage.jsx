@@ -35,6 +35,9 @@ const CreateUserPage = () => {
     if (!/[a-z]/.test(password)) return "Password must contain at least one lowercase letter";
     if (!/[0-9]/.test(password)) return "Password must contain at least one number";
     if (password !== password2) return "Passwords don't match!";
+    if (!/[^A-Za-z0-9]/.test(password)) {
+      return "Password must contain a special character";
+    }
     return null;
   };
 
