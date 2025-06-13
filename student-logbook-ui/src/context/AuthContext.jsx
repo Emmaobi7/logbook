@@ -17,9 +17,27 @@ export function AuthProvider({ children }) {
     setLoading(false);
   }, []);
 
+  // Register using API
+  const register = async (userData) => {
+    try {
+      const res = await axiosInstance.post('/auth/register', userData);
+      const { token, user } = res.data;
+
+      // Store token and user
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      setUser(user);
+      return user;
+    } catch (error) {
+      console.error('Registration error:', error);
+      const message = error?.response?.data?.message || 'Registration failed';
+      throw new Error(message);
+    }
+  };
+
   // Login using API
   const login = async (email, password) => {
-    
     try {
       const res = await axiosInstance.post('/auth/login', { email, password });
       const { token, user } = res.data;
@@ -43,7 +61,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );

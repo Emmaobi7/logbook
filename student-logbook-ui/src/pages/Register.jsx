@@ -8,7 +8,7 @@ import logo from '../assets/wapcp2-removebg-preview.png';
 const baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
 const Register = () => {
-  const { login } = useAuth();
+  const { login, register } = useAuth();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,27 +33,22 @@ const Register = () => {
     e.preventDefault();
     const passwordErr = validatePassword(password);
     if (passwordErr) return setErr(passwordErr);
-    setLoading(true)
+    setLoading(true);
 
     try {
-      const res = await axios.post(`${baseURL}/auth/register`, {
+      await register({
         fullName,
         email,
         password,
       });
-
-      // Store user and token in localStorage and AuthContext
-      const user = res.data.user
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem('user', JSON.stringify(user));
-      await login(res.data.user);
-      navigate("/login");
+      
+      // Navigate to dashboard after successful registration
+      navigate("/student/dashboard");
     } catch (error) {
-      console.log(error)
-      setErr(error?.response?.data?.message || "Registration failed");
-      setLoading(false)
+      console.error("Registration error:", error);
+      setErr(error.message || "Registration failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 

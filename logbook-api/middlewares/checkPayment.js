@@ -4,6 +4,7 @@ const User = require('../models/User');
 const checkPayment = async (req, res, next) => {
   try {
     const student = await User.findById(req.user.userId);
+    console.log(req.user)
     if (!student) return res.status(404).json({ message: 'Student not found middleware.' });
 
     if (!student.hasPaid) {
