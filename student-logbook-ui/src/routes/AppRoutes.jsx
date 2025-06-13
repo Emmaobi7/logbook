@@ -30,6 +30,7 @@ import SupervisorStudents from '../pages/supervisor/Students';
 import ForgotPassword from '../pages/fp';
 import ResetPassword from '../pages/reset-password';
 import LandingPage from '../pages/LandingPage';
+import NotFound from '../pages/NotFound';
 
 function App() {
   return (
@@ -263,6 +264,14 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="*"
+            element={
+                <NotFound />
+            }
+          />
+
 
 
           {/* Add other protected routes similarly */}
