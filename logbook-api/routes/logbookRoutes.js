@@ -4,6 +4,9 @@ const { createEntry, getMyEntries, exportLogbookPDF, updateLog } = require('../c
 const auth = require('../middlewares/auth');
 const checkRole = require('../middlewares/role');
 const checkPayment = require('../middlewares/checkPayment');
+const preventNoSQLInjection = require('../middlewares/preventNosqlInjection');
+const validateLogEntry = require('../middlewares/validateStudentLog');
+const validateLogEntryUpdate = require('../middlewares/validateStudentLogUpdate');
 
 
 
@@ -60,7 +63,7 @@ router.get('/log', auth, checkPayment, getMyEntries);
  *       401:
  *         description: Unauthorized
  */
-router.post('/log', auth, checkPayment, createEntry);
+router.post('/log', auth, checkPayment, ...validateLogEntry, preventNoSQLInjection, createEntry);
 
 
 /**
@@ -124,7 +127,7 @@ router.get('/export-pdf', auth, checkPayment, exportLogbookPDF);
  *       401:
  *         description: Unauthorized
  */
-router.patch('/log/:id', auth, checkPayment, updateLog);
+router.patch('/log/:id', auth, checkPayment, ...validateLogEntryUpdate, preventNoSQLInjection, updateLog);
 
 
 
