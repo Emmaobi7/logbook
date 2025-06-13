@@ -56,7 +56,7 @@ export default function Sidebar() {
       {/* Mobile Top Bar - Only shows on mobile */}
       {isMobile && (
         <div className="md:hidden sidebar-supervisor p-4 flex justify-between items-center text-white fixed top-0 left-0 right-0 z-50">
-          <h1 className="text-lg font-bold">LOGBOOK</h1>
+          <h1 className="text-lg font-bold">PRECEPTOR</h1>
           <button onClick={() => setOpen(!open)}>
             {open ? <FaTimes size={24} /> : <FaBars size={24} />}
           </button>
