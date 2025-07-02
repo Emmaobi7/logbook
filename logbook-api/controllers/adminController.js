@@ -323,7 +323,7 @@ exports.assignStudentsToSupervisor = async (req, res) => {
       await sendEmail(
         supervisor.email,
         'New Logbook Review Invitation',
-        `Hi ${supervisor.fullName || 'Supervisor'},\n\nYou’ve been assigned to review a student’s logbook.\nClick the link below to begin:\n\n${link}`
+        `Hi ${supervisor.fullName || 'Supervisor'},\n\nYou've been assigned to review a student's logbook.\nClick the link below to begin:\n\n${link}`
       );
     }
 
@@ -355,11 +355,24 @@ exports.getMyNotifications = async (req, res) => {
 
 
 exports.getStudentsUnderSupervisor = async (req, res) => {
-  const supervisorEmail = req.query.email;
+  let supervisorEmail = req.query.email;
+  const supervisorId = req.user.userId
+ 
 
   try {
+    if (supervisorId) {
+      // Look up supervisor by id
+      const supervisor = await User.findById(supervisorId);
+      if (!supervisor) {
+        return res.status(404).json({ message: 'Supervisor not found.' });
+      }
+      supervisorEmail = supervisor.email;
+    }
+    if (!supervisorEmail) {
+      return res.status(400).json({ message: 'Supervisor email or id is required.' });
+    }
     const sessions = await SupervisorSession.find({ supervisorEmail })
-      .populate('student', 'fullName email department') // choose fields you want to expose
+      .populate('student', 'fullName email department');
 
     const students = sessions.map(session => ({
       studentId: session.student._id,

@@ -38,11 +38,11 @@ export default function Sidebar() {
         { name: "Dashboard", to: "/supervisor/dashboard", icon: <FaHome /> },
         { name: "Student Logs", to: "/supervisor/logs", icon: <FaClipboardList /> },
         { name: "My Students", to: "/supervisor/students", icon: <FaUsers  /> },
+        { name: "Scores", to: "/supervisor/scores", icon: <MdAssignment /> },
         { name: "Export Logs", to: "/supervisor/export", icon: <FaFileExport /> },
         { name: "Profile", to: "/supervisor/profile", icon: <FaUser /> },
         { name: "Notification", to: "/supervisor/notification", icon: <FaBell  /> },
         { name: "Guide", to: "/supervisor/guide", icon: <FaRegQuestionCircle  /> },
-        
       ]
     : [
         { name: "Dashboard", to: "/student/dashboard", icon: <FaHome /> },

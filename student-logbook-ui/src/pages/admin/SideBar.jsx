@@ -66,10 +66,11 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full sidebar-admin text-white w-64 p-6 transform ${
-          open ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 transition-transform duration-300 z-50`}
+        className={`fixed top-0 left-0 h-full w-64 p-6 transform bg-[#0f172a] text-white overflow-y-auto pb-6
+          ${open ? "translate-x-0" : "-translate-x-full"} 
+          md:translate-x-0 transition-transform duration-300 z-50`}
       >
+
         <div className="flex flex-col h-full">
           {/* Header */}
           <div className="flex justify-between items-center mb-8">
@@ -96,6 +97,7 @@ export default function Sidebar() {
             <NavItem to="/admin/notification" icon={<MdAssignment />} text="Send Notification" />
             <NavItem to="/admin/sent" icon={<MdSend />} text="Sent Notifications" />
             <NavItem to="/admin/add-user" icon={<MdPersonAdd />} text="Add user" />
+            <NavItem to="/admin/scores" icon={<MdAssignment />} text="Scores" />
             <NavItem to="/admin/assign" icon={<MdSupervisorAccount />} text="Assign preceptor" />
             <NavItem to="/admin/guide" icon={<FaRegQuestionCircle />} text="Guide" />
             <button
@@ -108,9 +110,7 @@ export default function Sidebar() {
           </nav>
 
           {/* Footer */}
-          <div className="mt-auto pt-4 border-t border-gray-800">
-            <p className="text-sm text-blue-300">v1.0.0</p>
-          </div>
+          
         </div>
       </aside>
     </>

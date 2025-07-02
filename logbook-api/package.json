@@ -34,5 +34,10 @@
     "jest": "^29.7.0",
     "nodemon": "^3.1.10",
     "supertest": "^7.1.1"
-  }
+  },
+  "files": [
+    "models/StudentScore.js",
+    "controllers/scoreController.js",
+    "routes/scoreRoutes.js"
+  ]
 }

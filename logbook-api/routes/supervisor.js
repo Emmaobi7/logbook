@@ -7,6 +7,7 @@ const { inviteSupervisor, getSessionDetails, updateLogStatus } = require('../con
 const { getDashboardStats, getRecentLogs, getStudentLogs, updateLogStatusPage } = require('../controllers/supervisorPageController');
 const protect = require('../middlewares/auth');
 const requireRole = require('../middlewares/requireRole');
+const { getStudentsUnderSupervisor } = require('../controllers/adminController');
 
 router.post('/invite', protect, inviteSupervisor);
 router.get('/session/:token', getSessionDetails);
@@ -22,5 +23,7 @@ router.patch("/student-logs/:logId", protect, requireRole("supervisor"), updateL
 
 router.get("/export/logs/all", protect, requireRole("supervisor"), exportAllLogs);
 router.get("/export/logs/student/:studentId", protect, requireRole("supervisor"), exportStudentLogs);
+
+router.get("/students", protect, requireRole("supervisor"), getStudentsUnderSupervisor);
 
 module.exports = router;

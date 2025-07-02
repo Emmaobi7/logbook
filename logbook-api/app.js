@@ -13,6 +13,7 @@ const supervisorRoutes = require('./routes/supervisor');
 const studentProfileRoutes = require('./routes/studentProfile');
 const supervisorProfileRoutes = require('./routes/supervisorProfile');
 const adminRoutes = require('./routes/adminRoutes');
+const scoreRoutes = require('./routes/scoreRoutes');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./utils/swagger');
@@ -40,6 +41,7 @@ app.use('/supervisor', supervisorRoutes);
 app.use('/student', studentProfileRoutes);
 app.use('/supervisor-profile', supervisorProfileRoutes);
 app.use('/admin', adminRoutes);
+app.use('/api/scores', scoreRoutes);
 
 // Swagger docs (only in dev)
 if (process.env.NODE_ENV !== 'production') {

@@ -41,8 +41,8 @@ html, body {
 .sidebar-student {
   background: linear-gradient(
   to bottom right,
-  #2e7d32,  /* darker leaf green */
-  #1b5e20   /* even darker leaf green */
+  #8cda90,  /* darker leaf green */
+  #84ce89   /* even darker leaf green */
 );
 
 }

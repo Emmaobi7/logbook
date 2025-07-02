@@ -19,11 +19,22 @@ import logo from '../../assets/wps2.png';
 const links = [
   { to: '/student/dashboard', label: 'Dashboard', icon: <FaTachometerAlt /> },
   { to: '/student/logbook', label: 'My Logbook', icon: <FaBook /> },
+  { to: '/student/scores', label: 'Scores', icon: <MdAssignment /> },
   { to: '/student/supervisor', label: 'Preceptor', icon: <FaUserTie /> },
   // { to: '/student/exam-registration', label: 'Exam Registration', icon: <FaBook /> },
   { to: '/student/profile', label: 'Profile', icon: <FaUser /> },
   { to: '/student/notification', label: 'Notification', icon: <FaBell /> },
   { to: '/student/guide', label: 'Guide', icon: < FaRegQuestionCircle /> },
+];
+
+const adminLinks = [
+  { to: '/admin/dashboard', label: 'Dashboard', icon: <FaTachometerAlt /> },
+  { to: '/admin/users', label: 'Users', icon: <FaUser /> },
+  { to: '/admin/scores', label: 'Scores', icon: <MdAssignment /> },
+  { to: '/admin/notification', label: 'Notification', icon: <FaBell /> },
+  { to: '/admin/sent', label: 'Sent', icon: <FaBook /> },
+  { to: '/admin/assign', label: 'Assign', icon: <FaUserTie /> },
+  { to: '/admin/guide', label: 'Guide', icon: <FaRegQuestionCircle /> },
 ];
 
 export default function Sidebar() {

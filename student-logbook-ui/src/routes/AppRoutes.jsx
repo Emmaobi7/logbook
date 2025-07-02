@@ -31,6 +31,9 @@ import ForgotPassword from '../pages/fp';
 import ResetPassword from '../pages/reset-password';
 import LandingPage from '../pages/LandingPage';
 import NotFound from '../pages/NotFound';
+import StudentScores from '../pages/student/Scores';
+import AdminScores from '../pages/admin/AdminScores';
+import SupervisorScores from '../pages/supervisor/Scores';
 
 function App() {
   return (
@@ -107,6 +110,15 @@ function App() {
                 <UsersPage />  
               </ProtectedRoute>
             } 
+          />
+
+          <Route 
+            path="/admin/scores"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminScores />
+              </ProtectedRoute>
+            }
           />
 
           <Route 
@@ -261,6 +273,24 @@ function App() {
             element={
               <ProtectedRoute requiredRole="student">
                 <StudentGuide />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/student/scores"
+            element={
+              <ProtectedRoute requiredRole="student">
+                <StudentScores />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/supervisor/scores"
+            element={
+              <ProtectedRoute requiredRole="supervisor">
+                <SupervisorScores />
               </ProtectedRoute>
             }
           />
