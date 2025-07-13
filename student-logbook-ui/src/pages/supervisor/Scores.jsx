@@ -142,6 +142,15 @@ export default function SupervisorScores() {
             <p className="text-gray-600">No scores submitted yet.</p>
           ) : (
             <div className="overflow-x-auto">
+              {!loadingScores && !errorScores && scores.length > 0 && (
+                <button
+                  onClick={() => exportSupervisorScoresToCSV(scores, criteria)}
+                  className="mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                >
+                  Export Scores to CSV
+                </button>
+              )}
+
               <table className="min-w-full bg-white border rounded shadow text-sm">
                 <thead className="bg-gray-200 text-gray-700">
                   <tr>
@@ -278,3 +287,41 @@ function ScoreModal({ student, onClose, onScored }) {
     </div>
   );
 } 
+
+
+
+
+
+function exportSupervisorScoresToCSV(scores, criteria, filename = 'scores_given.csv') {
+  if (!scores || scores.length === 0) return;
+
+  const headers = [
+    'Date',
+    'Student Name',
+    'Student Email',
+    ...criteria.map(c => c.label),
+    'Comment',
+  ];
+
+  const rows = scores.map(score => [
+    new Date(score.createdAt).toLocaleDateString(),
+    score.student?.fullName || '-',
+    score.student?.email || '-',
+    ...criteria.map(c => score[c.key]),
+    score.comment || '-',
+  ]);
+
+  const csvContent = [headers, ...rows]
+    .map(row => row.map(value => `"${value}"`).join(','))
+    .join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

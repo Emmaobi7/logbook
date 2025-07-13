@@ -54,6 +54,15 @@ export default function StudentScores() {
           <p className="text-gray-600">No scores available yet.</p>
         ) : (
           <div className="overflow-x-auto">
+            {!loading && !error && scores.length > 0 && (
+              <button
+                onClick={() => exportScoresToCSV(scores)}
+                className="mb-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+              >
+                Export to CSV
+              </button>
+            )}
+
             <table className="min-w-full bg-white border rounded shadow text-sm">
               <thead className="bg-gray-200 text-gray-700">
                 <tr>
@@ -61,7 +70,7 @@ export default function StudentScores() {
                   {criteria.map(c => (
                     <th key={c.key} className="py-2 px-4 border">{c.label}</th>
                   ))}
-                  <th className="py-2 px-4 border">Supervisor</th>
+                  <th className="py-2 px-4 border">Preceptor</th>
                   <th className="py-2 px-4 border">Email</th>
                   <th className="py-2 px-4 border">Comment</th>
                 </tr>
@@ -86,3 +95,40 @@ export default function StudentScores() {
     </div>
   );
 } 
+
+
+
+
+function exportScoresToCSV(scores, filename = 'my_scores.csv') {
+  if (!scores || scores.length === 0) return;
+
+  const headers = [
+    'Date',
+    ...criteria.map(c => c.label),
+    'Preceptor',
+    'Email',
+    'Comment',
+  ];
+
+  const rows = scores.map(score => [
+    new Date(score.createdAt).toLocaleDateString(),
+    ...criteria.map(c => score[c.key]),
+    score.supervisorName,
+    score.supervisorEmail,
+    score.comment || '-',
+  ]);
+
+  const csvContent = [headers, ...rows]
+    .map(row => row.map(value => `"${value}"`).join(','))
+    .join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', filename);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}

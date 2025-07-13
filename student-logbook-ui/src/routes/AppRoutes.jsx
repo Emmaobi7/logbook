@@ -34,12 +34,15 @@ import NotFound from '../pages/NotFound';
 import StudentScores from '../pages/student/Scores';
 import AdminScores from '../pages/admin/AdminScores';
 import SupervisorScores from '../pages/supervisor/Scores';
+import UrlMasker from '../UrlMasker';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
+         <UrlMasker />
         <Routes>
+           
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/fp" element={<ForgotPassword />} />
@@ -216,7 +219,7 @@ function App() {
           
 
           <Route
-            path='/student/supervisor'
+            path='/student/preceptor'
             element={
               <ProtectedRoute requiredRole="student">
                 <SupervisorInviteForm/>

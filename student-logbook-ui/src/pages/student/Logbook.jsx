@@ -177,7 +177,7 @@ return (
                     <th className="py-3 px-4 border">Date</th>
                     <th className="py-3 px-4 border">Activities</th>
                     <th className="py-3 px-4 border">Competencies Acquired</th>
-                    <th className="py-3 px-4 border">Preceptor’s Signature</th>
+                    <th className="py-3 px-4 border">Preceptor’s Decision</th>
                     <th className="py-3 px-4 border">Preceptor’s Comment</th>
                     <th className="py-3 px-4 border">Corrections</th>
                   </tr>

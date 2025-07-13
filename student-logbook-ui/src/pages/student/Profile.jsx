@@ -18,6 +18,8 @@ export default function StudentProfile() {
     faculty: "",
     country: "",
     residencySite: "",
+    residencyPeriod: "",
+    preceptorName: "",
   });
 
   const [passportPreview, setPassportPreview] = useState(null);
@@ -126,6 +128,10 @@ export default function StudentProfile() {
             <TextInput label="Faculty" name="faculty" value={profile.faculty} onChange={handleChange} />
             <TextInput label="Country" name="country" value={profile.country} onChange={handleChange} />
             <TextInput label="Residency Site" name="residencySite" value={profile.residencySite} onChange={handleChange} />
+            <TextInput label="Residency Period" name="residencyPeriod" value={profile.residencyPeriod} onChange={handleChange} />
+            <TextInput label="Precepor Name" name="preceptorName" value={profile.preceptorName} onChange={handleChange} />
+
+
           </div>
 
           <div className="md:col-span-2 mt-6 text-center">

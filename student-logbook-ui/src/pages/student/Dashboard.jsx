@@ -43,11 +43,11 @@ export default function StudentDashboard() {
         {!loading && (
           supervisor ? (
             <div className="mb-6 p-4 bg-blue-100 text-blue-900 rounded">
-              You are currently supervised by <strong>{supervisor.fullName}</strong> ({supervisor.email})
+              You are currently under the guidance of your preceptor <strong>{supervisor.fullName}</strong> ({supervisor.email})
             </div>
           ) : (
             <div className="mb-6 p-4 bg-yellow-100 text-yellow-900 rounded">
-              You currently have no supervisor assigned.
+              You currently have no preceptor assigned.
             </div>
           )
         )}

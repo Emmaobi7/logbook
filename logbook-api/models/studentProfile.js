@@ -15,6 +15,8 @@ const studentProfileSchema = new mongoose.Schema({
   specialty: String,
   country: String,
   residencySite: String,
+  residencyPeriod: String,
+  preceptorName: String,
   passport: String, // URL or filename of uploaded image
 }, {
   timestamps: true,

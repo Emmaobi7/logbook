@@ -52,7 +52,7 @@ const SentNotifications = () => {
           >
             <MenuItem value="all">All</MenuItem>
             <MenuItem value="admin">Admin</MenuItem>
-            <MenuItem value="supervisor">Supervisor</MenuItem>
+            <MenuItem value="supervisor">Preceptor</MenuItem>
             <MenuItem value="student">Student</MenuItem>
           </Select>
         </FormControl>

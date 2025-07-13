@@ -31,6 +31,8 @@ exports.updateProfile = async (req, res) => {
       program: req.body.program,
       country: req.body.country,
       residencySite: req.body.residencySite,
+      residencyPeriod: req.body.residencyPeriod,
+      preceptorName: req.body.preceptorName,
     };
 
     const profile = await StudentProfile.findOne({ user: req.user.userId });
