@@ -204,7 +204,7 @@ function ScoreModal({ student, onClose, onScored }) {
           setLastScoreDate(last);
           const now = new Date();
           const diff = (now - last) / (1000 * 60 * 60 * 24);
-          if (diff < 28) setCanScore(false);
+          if (diff < 7) setCanScore(false);
         }
       } catch (err) {
         // ignore
@@ -243,7 +243,7 @@ function ScoreModal({ student, onClose, onScored }) {
           <p className="mb-2 text-sm text-gray-600">Last scored: {lastScoreDate.toLocaleDateString()}</p>
         )}
         {!canScore ? (
-          <div className="text-red-600 mb-4">This student has already been scored in the last 28 days.</div>
+          <div className="text-red-600 mb-4">This student has already been scored in the last 7 days.</div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
             {criteria.map(c => (

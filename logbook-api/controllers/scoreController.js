@@ -44,8 +44,8 @@ exports.submitScore = async (req, res) => {
     // Check 28-day rule
     const lastScore = await StudentScore.findOne({ student: studentId })
       .sort({ createdAt: -1 });
-    if (lastScore && (Date.now() - lastScore.createdAt.getTime()) < 28 * 24 * 60 * 60 * 1000) {
-      return res.status(400).json({ message: 'Student has already been scored in the last 28 days.' });
+    if (lastScore && (Date.now() - lastScore.createdAt.getTime()) < 7 * 24 * 60 * 60 * 1000) {
+      return res.status(400).json({ message: 'Student has already been scored in the last 7 days.' });
     }
 
     // Get supervisor info
